@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float cellSize = 1f;  // 移动距离
+    public float cellSize = 0.25f;  // 移动距离
     public Vector2 startPosition = new Vector2(8, 4); // 初始位置
     public LayerMask wallLayer;  
 
@@ -29,10 +29,10 @@ public class PlayerController : MonoBehaviour
  
         transform.position = Vector3.MoveTowards(transform.position,
             new Vector3(targetPosition.x * cellSize, targetPosition.y * cellSize, -1),
-            5f * Time.deltaTime);
+            2f * Time.deltaTime);
 
 
-        if (Vector3.Distance(transform.position, new Vector3(targetPosition.x * cellSize, targetPosition.y * cellSize, -1)) < 0.01f)
+        if (Vector3.Distance(transform.position, new Vector3(targetPosition.x * cellSize, targetPosition.y * cellSize, -1)) < 0.25f)
         {
             isMoving = false;
         }
