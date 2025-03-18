@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector3(targetPosition.x * cellSize, targetPosition.y * cellSize, -1);
     }
 
+    // Add this at the top of the class (along with other public variables)
+    public GameObject bombPrefab;
     void Update()
     {
         if (!isMoving) 
@@ -25,8 +27,24 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.A)) Move(Vector2.left);
             if (Input.GetKeyDown(KeyCode.D)) Move(Vector2.right);
         }
+        // Bomb placement logic: place bomb when space key is pressed.
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // Compute bomb grid position (divide by cellSize, round to nearest integer)
+            Vector2 bombGridPos = new Vector2(
+                Mathf.Round(transform.position.x / cellSize),
+                Mathf.Round(transform.position.y / cellSize)
+            );
 
- 
+            // Check if the grid cell already has a wall (using the same wallLayer)
+            Collider2D hit = Physics2D.OverlapPoint(new Vector2(bombGridPos.x * cellSize, bombGridPos.y * cellSize), wallLayer);
+            if (hit == null)
+            {
+                // Instantiate bomb at the computed grid position (z值设为-1)
+                Instantiate(bombPrefab, new Vector3(bombGridPos.x * cellSize, bombGridPos.y * cellSize, -1), Quaternion.identity);
+            }
+        }
+
         transform.position = Vector3.MoveTowards(transform.position,
             new Vector3(targetPosition.x * cellSize, targetPosition.y * cellSize, -1),
             5f * Time.deltaTime);
