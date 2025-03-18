@@ -4,10 +4,10 @@ public class PlayerController : MonoBehaviour
 {
     public float cellSize = 1f;  // 移动距离
     public Vector2 startPosition = new Vector2(8, 4); // 初始位置
-    public LayerMask wallLayer;  
+    public LayerMask wallLayer;
 
-    private Vector2 targetPosition;  
-    private bool isMoving = false;  
+    private Vector2 targetPosition;
+    private bool isMoving = false;
 
     void Start()
     {
@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!isMoving) 
+        if (!isMoving)
         {
             if (Input.GetKeyDown(KeyCode.W)) Move(Vector2.up);
             if (Input.GetKeyDown(KeyCode.S)) Move(Vector2.down);
@@ -26,11 +26,9 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.D)) Move(Vector2.right);
         }
 
- 
         transform.position = Vector3.MoveTowards(transform.position,
-            new Vector3(targetPosition.x * cellSize, targetPosition.y * cellSize, -1),
-            5f * Time.deltaTime);
-
+        new Vector3(targetPosition.x * cellSize, targetPosition.y * cellSize, -1),
+        5f * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, new Vector3(targetPosition.x * cellSize, targetPosition.y * cellSize, -1)) < 0.01f)
         {
@@ -48,7 +46,7 @@ public class PlayerController : MonoBehaviour
         if (hit == null)
         {
             targetPosition = newPosition;
-            isMoving = true; 
+            isMoving = true;
         }
     }
 }
