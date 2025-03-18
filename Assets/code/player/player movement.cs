@@ -11,6 +11,12 @@ public class PlayerController : MonoBehaviour
     private bool isMoving = false;
     private MeshRenderer meshRenderer;
     private Color originalColor;
+    // Add bombPrefab reference and maxBombs setting.
+    public GameObject bombPrefab;
+    public int maxBombs = 1;
+
+    private Vector2 targetPosition;
+    private bool isMoving = false;
 
     void Start()
     {
@@ -33,6 +39,24 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.S)) Move(Vector2.down);
             if (Input.GetKeyDown(KeyCode.A)) Move(Vector2.left);
             if (Input.GetKeyDown(KeyCode.D)) Move(Vector2.right);
+
+            // Bomb placement logic: place bomb when space key is pressed if bomb count is less than maxBombs.
+            if (Input.GetKeyDown(KeyCode.Space) && Bomb.currentBombCount < maxBombs)
+            {
+                // Compute bomb grid position (rounding player's position to nearest integer)
+                Vector2 bombGridPos = new Vector2(
+                    Mathf.Round(transform.position.x / cellSize),
+                    Mathf.Round(transform.position.y / cellSize)
+                );
+
+                // Check if the grid cell already has a wall.
+                Collider2D hit = Physics2D.OverlapPoint(new Vector2(bombGridPos.x * cellSize, bombGridPos.y * cellSize), wallLayer);
+                if (hit == null)
+                {
+                    // Instantiate bomb at the computed grid position (z set to -1)
+                    Instantiate(bombPrefab, new Vector3(bombGridPos.x * cellSize, bombGridPos.y * cellSize, -1), Quaternion.identity);
+                }
+            }
         }
 
         transform.position = Vector3.MoveTowards(transform.position,

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5240855265103168381}
   m_Layer: 0
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,6 +106,7 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 64
+  bombPrefab: {fileID: 0}
 --- !u!70 &4100757820819391727
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
