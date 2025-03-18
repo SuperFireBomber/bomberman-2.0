@@ -33,7 +33,7 @@ public class GridGenerator : MonoBehaviour
                 // 玩家生成位置
                 if (x == 8 && y == 4) continue;
 
-
+                // 玩家附近不会生成墙的位置
                 if (x == -10 || x == 10 || y == -6 || y == 6)
                 {
                     Vector3 wallPosition = new Vector3(x * cellSize, y * cellSize, -1); 
