@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
         {
             // 禁用碰撞体
             col.enabled = false;
-            // 修改材质颜色的alpha值，使角色变得半透明（注意：材质必须使用支持透明的Shader）
+            // 修改材质颜色的alpha值，使角色变得半透明
             if (meshRenderer != null)
             {
                 Color c = meshRenderer.material.color;
