@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class Bomb : MonoBehaviour
 {
+    // Static counter to track the number of bombs currently in the scene.
+    public static int currentBombCount = 0;
+
     // Time (in seconds) before the bomb explodes.
     public float explosionDelay = 5f;
-    public float explosionDuration = 2f;
 
     // Explosion radius in grid units (1 means explosion covers bomb cell plus adjacent cells up/down/left/right).
     public int explosionRadius = 1;
@@ -20,6 +22,9 @@ public class Bomb : MonoBehaviour
 
     void Start()
     {
+        // Increment bomb counter.
+        currentBombCount++;
+
         // Set the bomb's scale to 0.9 to match the desired size.
         transform.localScale = new Vector3(0.9f, 0.9f, 1f);
 
@@ -87,7 +92,7 @@ public class Bomb : MonoBehaviour
             // Set the z-position to -2 so explosion is rendered above walls if needed.
             GameObject explosionEffect = Instantiate(explosionPrefab, new Vector3(position.x, position.y, -2), Quaternion.identity);
             // Destroy explosion after 2 seconds (adjustable as needed)
-            Destroy(explosionEffect, explosionDuration);
+            Destroy(explosionEffect, 2f);
         }
         // Additional explosion logic (like applying damage) can be added here.
     }
@@ -97,7 +102,20 @@ public class Bomb : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            bombCollider.isTrigger = false;
+            StartCoroutine(SetColliderToSolid());
         }
+    }
+
+    IEnumerator SetColliderToSolid()
+    {
+        yield return new WaitForSeconds(0.2f); // Short delay to prevent immediate collision issues.
+        bombCollider.isTrigger = false;
+    }
+
+    // Decrement bomb counter when this bomb is destroyed.
+    void OnDestroy()
+    {
+        if (currentBombCount > 0)
+            currentBombCount--;
     }
 }

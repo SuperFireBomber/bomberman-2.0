@@ -57,7 +57,7 @@ MonoBehaviour:
   explosionPrefab: {fileID: 7074640691492448191, guid: 9231926d433178041886139f9210b512, type: 3}
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!61 &9047569373879483525
 BoxCollider2D:
   m_ObjectHideFlags: 0
