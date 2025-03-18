@@ -8,10 +8,10 @@ public class EnemyManager : MonoBehaviour
     public float cellSize = 1f;            // 格子大小
 
     // 地图范围：参考 GridGenerator 中 x: -10 ~ 10, y: -6 ~ 6
-    public int minX = -10;
-    public int maxX = 10;
-    public int minY = -6;
-    public int maxY = 6;
+    public int minX = -9;
+    public int maxX = 9;
+    public int minY = -5;
+    public int maxY = 5;
 
     // 玩家初始位置，排除此位置
     public Vector2 playerStartPos = new Vector2(8, 4);
@@ -22,6 +22,9 @@ public class EnemyManager : MonoBehaviour
     // 记录已预定的“下一步”移动位置，防止敌人冲突
     private HashSet<Vector2> reservedPositions = new HashSet<Vector2>();
 
+    // 保存生成的敌人实例
+    private List<GameObject> enemyList = new List<GameObject>();
+
     void Start()
     {
         // 生成所有可用的格子（此处简单起见，仅排除玩家位置；实际项目中可用 Physics2D 检测墙体）
@@ -29,6 +32,19 @@ public class EnemyManager : MonoBehaviour
 
         // 根据可用格子随机生成多个敌人
         SpawnEnemies();
+    }
+
+    void Update()
+    {
+        // 每帧输出三个Enemy的实时坐标
+        for (int i = 0; i < enemyList.Count; i++)
+        {
+            if (enemyList[i] != null)
+            {
+                Vector3 pos = enemyList[i].transform.position;
+                Debug.Log("Enemy " + i + " position: " + pos);
+            }
+        }
     }
 
     void CollectAvailablePositions()
@@ -75,6 +91,8 @@ public class EnemyManager : MonoBehaviour
                 enemyControl.cellSize = cellSize;
                 enemyControl.enemyManager = this;
             }
+
+            enemyList.Add(enemyObj);
         }
     }
 
