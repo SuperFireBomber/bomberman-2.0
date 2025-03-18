@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class EnemyControl : MonoBehaviour
 {
-    public float cellSize = 1f;              // 移动距离
+    public float cellSize = 1f;  // 移动距离
     public Vector2 startPosition = new Vector2(5, 5); // 初始位置（由 EnemyManager 设置）
-    public LayerMask wallLayer;              // 检测墙壁的图层
-    public EnemyManager enemyManager;        // 引用 EnemyManager
+    public LayerMask wallLayer;  // 检测墙壁的图层
+    public EnemyManager enemyManager; // 引用 EnemyManager
 
     private Vector2 targetPosition;
     private bool isMoving = false;
