@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      plumbumanite_block_0: -3982485234522278055
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

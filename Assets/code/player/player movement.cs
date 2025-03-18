@@ -15,9 +15,6 @@ public class PlayerController : MonoBehaviour
     public GameObject bombPrefab;
     public int maxBombs = 1;
 
-    private Vector2 targetPosition;
-    private bool isMoving = false;
-
     void Start()
     {
         targetPosition = startPosition;

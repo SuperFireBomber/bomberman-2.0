@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      tourmaline_block_0: -7727439585907659289
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      thulium_block_0: 8189988847789624018
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

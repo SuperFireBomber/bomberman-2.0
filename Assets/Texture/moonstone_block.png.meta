@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      moonstone_block_0: -4924662014433664616
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

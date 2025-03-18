@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      thlanium_block_0: -1307711222306651873
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
