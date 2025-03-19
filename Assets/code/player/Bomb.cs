@@ -31,7 +31,7 @@ public class Bomb : MonoBehaviour
         // Get the bomb's collider.
         bombCollider = GetComponent<Collider2D>();
 
-        // Initially set the collider as trigger so the player can pass through.
+        // Always set the collider as trigger so the player can pass through.
         bombCollider.isTrigger = true;
 
         // Start the explosion countdown.
@@ -94,23 +94,9 @@ public class Bomb : MonoBehaviour
             // Destroy explosion after 2 seconds (adjustable as needed)
             Destroy(explosionEffect, 2f);
         }
-        // Additional explosion logic (like applying damage) can be added here.
     }
 
-    // When the player exits the bomb's trigger area, set the collider to non-trigger so it becomes a solid obstacle.
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            StartCoroutine(SetColliderToSolid());
-        }
-    }
-
-    IEnumerator SetColliderToSolid()
-    {
-        yield return new WaitForSeconds(0.2f); // Short delay to prevent immediate collision issues.
-        bombCollider.isTrigger = false;
-    }
+    // Removed OnTriggerExit2D and related coroutine to allow the player to always pass through the bomb.
 
     // Decrement bomb counter when this bomb is destroyed.
     void OnDestroy()

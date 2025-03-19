@@ -52,7 +52,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionDelay: 2.5
-  explosionDuration: 2
   explosionRadius: 1
   explosionPrefab: {fileID: 7074640691492448191, guid: 9231926d433178041886139f9210b512, type: 3}
   obstacleLayer:
@@ -88,7 +87,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
