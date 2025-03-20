@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2c7ef5a8c27122745ad20d308154f1b7, type: 2}
+  - {fileID: 2100000, guid: bb1e606f56f88f9409daf6eb5bcc61d7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -142,7 +142,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: b5b2e61e51dd4b94193f56d4eaaba177, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -170,6 +170,4 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 64
-  minSteps: 1
-  maxSteps: 5
-  moveSpeed: 5
+  enemyManager: {fileID: 0}
