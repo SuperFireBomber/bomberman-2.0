@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
     public Vector2 startPosition = new Vector2(8, 4); // 初始位置
     public LayerMask wallLayer;
 
-    // Add bombPrefab reference and maxBombs setting.
     public GameObject bombPrefab;
     public int maxBombs = 1;
 
@@ -20,7 +19,8 @@ public class PlayerController : MonoBehaviour
     {
         targetPosition = startPosition;
         transform.position = new Vector3(targetPosition.x * cellSize, targetPosition.y * cellSize, -1);
-        // 获取SpriteRenderer组件并保存原始颜色
+
+        // 获取 SpriteRenderer 组件并保存原始颜色
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer != null)
         {
@@ -30,49 +30,65 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // 只有当玩家未在移动时，才能接收新的移动输入（支持长按）
         if (!isMoving)
         {
-            if (Input.GetKeyDown(KeyCode.W)) Move(Vector2.up);
-            if (Input.GetKeyDown(KeyCode.S)) Move(Vector2.down);
-            if (Input.GetKeyDown(KeyCode.A)) Move(Vector2.left);
-            if (Input.GetKeyDown(KeyCode.D)) Move(Vector2.right);
+            if (Input.GetKey(KeyCode.W)) StartCoroutine(Move(Vector2.up));
+            if (Input.GetKey(KeyCode.S)) StartCoroutine(Move(Vector2.down));
+            if (Input.GetKey(KeyCode.A)) StartCoroutine(Move(Vector2.left));
+            if (Input.GetKey(KeyCode.D)) StartCoroutine(Move(Vector2.right));
         }
-        // Bomb placement logic: place bomb when space key is pressed if bomb count is less than maxBombs.
+
+        // 放置炸弹
         if (Input.GetKeyDown(KeyCode.Space) && Bomb.currentBombCount < maxBombs)
         {
-            // Compute bomb grid position (rounding player's position to nearest integer)
-            Vector2 bombGridPos = new Vector2(
-                Mathf.Round(transform.position.x / cellSize),
-                Mathf.Round(transform.position.y / cellSize)
-            );
-
-            // Check if the grid cell already has a wall.
-            Collider2D hit = Physics2D.OverlapPoint(new Vector2(bombGridPos.x * cellSize, bombGridPos.y * cellSize), wallLayer);
-            if (hit == null)
-            {
-                // Instantiate bomb at the computed grid position (z set to -1)
-                Instantiate(bombPrefab, new Vector3(bombGridPos.x * cellSize, bombGridPos.y * cellSize, -1), Quaternion.identity);
-            }
-        }
-
-        transform.position = Vector3.MoveTowards(transform.position,
-            new Vector3(targetPosition.x * cellSize, targetPosition.y * cellSize, -1),
-            5f * Time.deltaTime);
-
-        if (Vector3.Distance(transform.position, new Vector3(targetPosition.x * cellSize, targetPosition.y * cellSize, -1)) < 0.25f)
-        {
-            isMoving = false;
+            PlaceBomb();
         }
     }
 
-    void Move(Vector2 direction)
+    private IEnumerator Move(Vector2 direction)
     {
         Vector2 newPosition = targetPosition + direction;
-        Collider2D hit = Physics2D.OverlapPoint(new Vector2(newPosition.x * cellSize, newPosition.y * cellSize), wallLayer);
+
+        // 检查目标位置是否有墙
+        Vector2 worldPos = new Vector2(newPosition.x * cellSize, newPosition.y * cellSize);
+        if (Physics2D.OverlapPoint(worldPos, wallLayer) != null)
+        {
+            yield break; // 退出协程，不移动
+        }
+
+        // 开始移动
+        isMoving = true;
+        Vector3 startPos = transform.position;
+        Vector3 endPos = new Vector3(newPosition.x * cellSize, newPosition.y * cellSize, -1);
+
+        float elapsedTime = 0f;
+        float moveTime = 0.1f; // 控制移动速度
+
+        while (elapsedTime < moveTime)
+        {
+            transform.position = Vector3.Lerp(startPos, endPos, elapsedTime / moveTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // 确保移动结束后的位置准确
+        transform.position = endPos;
+        targetPosition = newPosition;
+        isMoving = false;
+    }
+
+    private void PlaceBomb()
+    {
+        Vector2 bombGridPos = new Vector2(
+            Mathf.Round(transform.position.x / cellSize),
+            Mathf.Round(transform.position.y / cellSize)
+        );
+
+        Collider2D hit = Physics2D.OverlapPoint(new Vector2(bombGridPos.x * cellSize, bombGridPos.y * cellSize), wallLayer);
         if (hit == null)
         {
-            targetPosition = newPosition;
-            isMoving = true;
+            Instantiate(bombPrefab, new Vector3(bombGridPos.x * cellSize, bombGridPos.y * cellSize, -1), Quaternion.identity);
         }
     }
 
@@ -87,18 +103,16 @@ public class PlayerController : MonoBehaviour
         Collider2D col = GetComponent<Collider2D>();
         if (col != null)
         {
-            // 禁用碰撞体
             col.enabled = false;
-            // 修改SpriteRenderer颜色的alpha值，使角色变得半透明
             if (spriteRenderer != null)
             {
                 Color c = spriteRenderer.color;
                 c.a = 0.5f;  // 设置半透明
                 spriteRenderer.color = c;
             }
-            // 等待1.5秒
+
             yield return new WaitForSeconds(1.5f);
-            // 恢复碰撞体和原始颜色
+
             col.enabled = true;
             if (spriteRenderer != null)
             {
