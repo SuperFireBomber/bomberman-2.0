@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionDelay: 2.5
-  explosionRadius: 1
+  explosionRadius: 3
   explosionPrefab: {fileID: 7074640691492448191, guid: 9231926d433178041886139f9210b512, type: 3}
   obstacleLayer:
     serializedVersion: 2
