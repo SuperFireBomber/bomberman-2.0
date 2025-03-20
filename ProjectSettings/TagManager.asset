@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Wall
+  - Explosion
   layers:
   - Default
   - TransparentFX
