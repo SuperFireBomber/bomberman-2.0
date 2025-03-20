@@ -345,7 +345,7 @@ MonoBehaviour:
   obstaclePrefab: {fileID: 8720216507158862813, guid: a992d37b709d6ca4badfa766520b0e42, type: 3}
   wallChance: 0.1
   obstacleChance: 0.2
-  seed: 52
+  seed: 42
 --- !u!4 &1666922648
 Transform:
   m_ObjectHideFlags: 0
@@ -399,15 +399,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6869173125193822141, guid: 473aa7df602e94f4fa5fccc2304bea2e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.173652
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6869173125193822141, guid: 473aa7df602e94f4fa5fccc2304bea2e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.120823
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6869173125193822141, guid: 473aa7df602e94f4fa5fccc2304bea2e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.0353022
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6869173125193822141, guid: 473aa7df602e94f4fa5fccc2304bea2e, type: 3}
       propertyPath: m_LocalRotation.w

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GridGenerator : MonoBehaviour
 {
-    public int gridWidth = 21;  
+    public int gridWidth = 21; 
     public int gridHeight = 13; 
     public float cellSize = 1f;
 

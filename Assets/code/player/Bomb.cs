@@ -34,6 +34,13 @@ public class Bomb : MonoBehaviour
         // Always set the collider as trigger so the player can pass through.
         bombCollider.isTrigger = true;
 
+        // Snap the bomb's position to the nearest integer coordinate
+        Vector3 snappedPos = new Vector3(
+            Mathf.Round(transform.position.x),
+            Mathf.Round(transform.position.y),
+            transform.position.z
+        );
+        transform.position = snappedPos;
         // Start the explosion countdown.
         StartCoroutine(ExplosionCountdown());
     }
@@ -47,7 +54,10 @@ public class Bomb : MonoBehaviour
     void Explode()
     {
         // Determine the bomb's grid position (rounding to nearest integer).
-        Vector2 bombGridPosition = new Vector2(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y));
+        Vector2 bombGridPosition = new Vector2(
+            Mathf.Round(transform.position.x), 
+            Mathf.Round(transform.position.y)
+            );
 
         // Create explosion in the center.
         CreateExplosion(bombGridPosition);
@@ -61,20 +71,22 @@ public class Bomb : MonoBehaviour
             for (int i = 1; i <= explosionRadius; i++)
             {
                 Vector2 pos = bombGridPosition + dir * i;
-
-                // Check if there is an obstacle (wall) at the position.
+                // Check if there is any object on the obstacleLayer (both obstacle and wall are on this layer)
                 Collider2D hit = Physics2D.OverlapPoint(pos, obstacleLayer);
                 if (hit != null)
                 {
-                    // Destroy the wall and create explosion effect at this cell.
-                    Destroy(hit.gameObject);
-                    CreateExplosion(pos);
-                    // Stop further explosion propagation in this direction.
+                    // If the object Tag is "obstacle", destroy the object and create an explosion effect
+                    if (hit.gameObject.CompareTag("obstacle"))
+                    {
+                        Destroy(hit.gameObject);
+                        CreateExplosion(pos);
+                    }
+                    // Regardless of whether it is an obstacle, stop the explosion from spreading further in that direction. 
                     break;
                 }
                 else
                 {
-                    // Create explosion effect in this cell.
+                    // There is no collision object in the current grid, creating an explosion effect
                     CreateExplosion(pos);
                 }
             }
@@ -95,8 +107,6 @@ public class Bomb : MonoBehaviour
             Destroy(explosionEffect, 2f);
         }
     }
-
-    // Removed OnTriggerExit2D and related coroutine to allow the player to always pass through the bomb.
 
     // Decrement bomb counter when this bomb is destroyed.
     void OnDestroy()
