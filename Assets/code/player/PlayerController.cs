@@ -3,8 +3,6 @@ using System.Collections;  // 引入协程所需的命名空间
 
 public class PlayerController : MonoBehaviour
 {
-
-
     public float cellSize = 0.25f;  // 移动距离
     public Vector2 startPosition = new Vector2(8, 4); // 初始位置
     public LayerMask wallLayer;
@@ -13,26 +11,26 @@ public class PlayerController : MonoBehaviour
     public GameObject bombPrefab;
     public int maxBombs = 1;
 
-    private Vector2 targetPosition;  
+    private Vector2 targetPosition;
     private bool isMoving = false;
-    private MeshRenderer meshRenderer;
+    private SpriteRenderer spriteRenderer;   // 使用 SpriteRenderer 替代 MeshRenderer
     private Color originalColor;
 
     void Start()
     {
         targetPosition = startPosition;
         transform.position = new Vector3(targetPosition.x * cellSize, targetPosition.y * cellSize, -1);
-        // 获取MeshRenderer组件并保存初始材质颜色
-        meshRenderer = GetComponent<MeshRenderer>();
-        if (meshRenderer != null)
+        // 获取SpriteRenderer组件并保存原始颜色
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
         {
-            originalColor = meshRenderer.material.color;
+            originalColor = spriteRenderer.color;
         }
     }
 
     void Update()
     {
-        if (!isMoving) 
+        if (!isMoving)
         {
             if (Input.GetKeyDown(KeyCode.W)) Move(Vector2.up);
             if (Input.GetKeyDown(KeyCode.S)) Move(Vector2.down);
@@ -61,7 +59,6 @@ public class PlayerController : MonoBehaviour
             new Vector3(targetPosition.x * cellSize, targetPosition.y * cellSize, -1),
             5f * Time.deltaTime);
 
-
         if (Vector3.Distance(transform.position, new Vector3(targetPosition.x * cellSize, targetPosition.y * cellSize, -1)) < 0.25f)
         {
             isMoving = false;
@@ -79,7 +76,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // 新增方法：调用协程禁用碰撞体并改变透明度
+    // 修改后的 DisableCollider 方法，使用 SpriteRenderer 来实现透明效果
     public void DisableCollider()
     {
         StartCoroutine(DisableColliderCoroutine());
@@ -92,21 +89,21 @@ public class PlayerController : MonoBehaviour
         {
             // 禁用碰撞体
             col.enabled = false;
-            // 修改材质颜色的alpha值，使角色变得半透明
-            if (meshRenderer != null)
+            // 修改SpriteRenderer颜色的alpha值，使角色变得半透明
+            if (spriteRenderer != null)
             {
-                Color c = meshRenderer.material.color;
+                Color c = spriteRenderer.color;
                 c.a = 0.5f;  // 设置半透明
-                meshRenderer.material.color = c;
+                spriteRenderer.color = c;
             }
             // 等待1.5秒
             yield return new WaitForSeconds(1.5f);
             // 恢复碰撞体和原始颜色
             col.enabled = true;
-            if (meshRenderer != null)
+            if (spriteRenderer != null)
             {
-                meshRenderer.material.color = originalColor;
+                spriteRenderer.color = originalColor;
             }
         }
     }
- }
+}
