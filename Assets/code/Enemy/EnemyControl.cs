@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class EnemyControl : MonoBehaviour
 {
-    public float cellSize = 1f;  // ÒÆ¶¯¾àÀë
-    public Vector2 startPosition = new Vector2(5, 5); // ³õÊ¼Î»ÖÃ£¨ÓÉ EnemyManager ÉèÖÃ£©
-    public LayerMask wallLayer;  // ¼ì²âÇ½±ÚµÄÍ¼²ã
-    public EnemyManager enemyManager; // ÒıÓÃ EnemyManager
+    public float cellSize = 1f;  // ç§»åŠ¨è·ç¦»
+    public Vector2 startPosition = new Vector2(5, 5); // åˆå§‹ä½ç½®ï¼ˆç”± EnemyManager è®¾ç½®ï¼‰
+    public LayerMask wallLayer;  // æ£€æµ‹å¢™å£çš„å›¾å±‚
+    public EnemyManager enemyManager; // å¼•ç”¨ EnemyManager
 
     private Vector2 targetPosition;
     private bool isMoving = false;
@@ -20,7 +20,7 @@ public class EnemyControl : MonoBehaviour
     {
         if (!isMoving)
         {
-            // ¶¨ÒåÉÏÏÂ×óÓÒËÄ¸ö·½Ïò
+            // å®šä¹‰ä¸Šä¸‹å·¦å³å››ä¸ªæ–¹å‘
             Vector2[] directions = new Vector2[] { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
 
             for (int i = 0; i < directions.Length; i++)
@@ -28,12 +28,12 @@ public class EnemyControl : MonoBehaviour
                 int randIndex = Random.Range(0, directions.Length);
                 Vector2 direction = directions[randIndex];
                 Vector2 newPosition = targetPosition + direction;
-                // ¼ì²âĞÂÎ»ÖÃÊÇ·ñÓĞÇ½Ìå
+                // æ£€æµ‹æ–°ä½ç½®æ˜¯å¦æœ‰å¢™ä½“
                 Collider2D hit = Physics2D.OverlapPoint(new Vector2(newPosition.x * cellSize, newPosition.y * cellSize), wallLayer);
                 if (hit != null)
                     continue;
 
-                // Ïò EnemyManager ÉêÇëÔ¤¶¨¸ÃÎ»ÖÃ
+                // å‘ EnemyManager ç”³è¯·é¢„å®šè¯¥ä½ç½®
                 if (enemyManager != null && enemyManager.ReserveNextPosition(newPosition))
                 {
                     targetPosition = newPosition;
@@ -43,12 +43,12 @@ public class EnemyControl : MonoBehaviour
             }
         }
 
-        // Æ½»¬ÒÆ¶¯µ½Ä¿±êÎ»ÖÃ
+        // å¹³æ»‘ç§»åŠ¨åˆ°ç›®æ ‡ä½ç½®
         transform.position = Vector3.MoveTowards(transform.position,
             new Vector3(targetPosition.x * cellSize, targetPosition.y * cellSize, -1),
             2f * Time.deltaTime);
 
-        // µ½´ïÄ¿±êÎ»ÖÃºóÊÍ·ÅÔ¤¶¨
+        // åˆ°è¾¾ç›®æ ‡ä½ç½®åé‡Šæ”¾é¢„å®š
         if (Vector3.Distance(transform.position, new Vector3(targetPosition.x * cellSize, targetPosition.y * cellSize, -1)) < 0.01f)
         {
             isMoving = false;
@@ -57,7 +57,7 @@ public class EnemyControl : MonoBehaviour
         }
     }
 
-    // Åö×²¼ì²â£ºµ±Åöµ½ Player Ê±µ÷ÓÃ Player µÄ DisableCollider ·½·¨
+    // ç¢°æ’æ£€æµ‹ï¼šå½“ç¢°åˆ° Player æ—¶è°ƒç”¨ Player çš„ DisableCollider æ–¹æ³•
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -67,8 +67,15 @@ public class EnemyControl : MonoBehaviour
             {
                 player.DisableCollider();
             }
+
+            // æ‰£è¡€
+            if (PlayerHealthController.instance != null)
+            {
+                PlayerHealthController.instance.DealDamage();
+            }
         }
     }
+
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -77,5 +84,6 @@ public class EnemyControl : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 
 }
