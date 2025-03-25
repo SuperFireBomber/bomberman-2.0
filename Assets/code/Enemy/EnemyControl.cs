@@ -1,39 +1,56 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyControl : MonoBehaviour
 {
-    public float cellSize = 1f;  // 移动距离
+    [Header("移动相关")]
+    public float cellSize = 1f;               // 格子大小
     public Vector2 startPosition = new Vector2(5, 5); // 初始位置（由 EnemyManager 设置）
-    public LayerMask wallLayer;  // 检测墙壁的图层
-    public EnemyManager enemyManager; // 引用 EnemyManager
+    public LayerMask wallLayer;               // 检测墙壁的图层
+    public EnemyManager enemyManager;         // 引用 EnemyManager
+
+    public float baseSpeed = 2f;              // 基础速度（在 Inspector 中可以统一设置）
+    public float speedMultiplier = 1f;        // 速度乘数（由 EnemyManager 传入，不同类型不同）
+    private float moveSpeed;                  // 实际速度 = baseSpeed * speedMultiplier
 
     private Vector2 targetPosition;
     private bool isMoving = false;
 
+    [Header("生命与无敌")]
+    public int maxHealth = 1;                 // 敌人最大血量（不同类型不同）
+    private int currentHealth;
+    private bool isInvulnerable = false;      // 短暂无敌状态
+
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
+
     void Start()
     {
+        currentHealth = maxHealth;
+        moveSpeed = baseSpeed * speedMultiplier;
         targetPosition = startPosition;
         transform.position = new Vector3(targetPosition.x * cellSize, targetPosition.y * cellSize, -1);
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            originalColor = spriteRenderer.color;
+        }
     }
 
     void Update()
     {
         if (!isMoving)
         {
-            // 定义上下左右四个方向
             Vector2[] directions = new Vector2[] { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
-
             for (int i = 0; i < directions.Length; i++)
             {
                 int randIndex = Random.Range(0, directions.Length);
                 Vector2 direction = directions[randIndex];
                 Vector2 newPosition = targetPosition + direction;
-                // 检测新位置是否有墙体
                 Collider2D hit = Physics2D.OverlapPoint(new Vector2(newPosition.x * cellSize, newPosition.y * cellSize), wallLayer);
                 if (hit != null)
                     continue;
-
-                // 向 EnemyManager 申请预定该位置
                 if (enemyManager != null && enemyManager.ReserveNextPosition(newPosition))
                 {
                     targetPosition = newPosition;
@@ -43,21 +60,35 @@ public class EnemyControl : MonoBehaviour
             }
         }
 
-        // 平滑移动到目标位置
-        transform.position = Vector3.MoveTowards(transform.position,
-            new Vector3(targetPosition.x * cellSize, targetPosition.y * cellSize, -1),
-            2f * Time.deltaTime);
-
-        // 到达目标位置后释放预定
-        if (Vector3.Distance(transform.position, new Vector3(targetPosition.x * cellSize, targetPosition.y * cellSize, -1)) < 0.01f)
+        Vector3 targetWorldPos = new Vector3(targetPosition.x * cellSize, targetPosition.y * cellSize, -1);
+        transform.position = Vector3.MoveTowards(transform.position, targetWorldPos, moveSpeed * Time.deltaTime);
+        if (Vector3.Distance(transform.position, targetWorldPos) < 0.01f)
         {
             isMoving = false;
             if (enemyManager != null)
                 enemyManager.ReleaseReservedPosition(targetPosition);
+            transform.position = targetWorldPos;
         }
     }
 
-    // 碰撞检测：当碰到 Player 时调用 Player 的 DisableCollider 方法
+    // 提供公开方法，由 ExplosionCollision 调用
+    public void ApplyExplosionDamage()
+    {
+        if (!isInvulnerable)
+        {
+            StartCoroutine(DisableColliderCoroutine());
+            TakeDamage();
+        }
+    }
+
+    void TakeDamage()
+    {
+        currentHealth--;
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -76,14 +107,30 @@ public class EnemyControl : MonoBehaviour
         }
     }
 
-
-    void OnTriggerEnter2D(Collider2D collision)
+    // 短暂无敌与透明效果（例如2秒），防止同一个炸弹重复伤害
+    private IEnumerator DisableColliderCoroutine()
     {
-        if (collision.CompareTag("Explosion"))
+        isInvulnerable = true;
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null)
         {
-            Destroy(gameObject);
+            col.enabled = false;
         }
+        if (spriteRenderer != null)
+        {
+            Color c = spriteRenderer.color;
+            c.a = 0.5f; // 半透明
+            spriteRenderer.color = c;
+        }
+        yield return new WaitForSeconds(2f);
+        if (col != null)
+        {
+            col.enabled = true;
+        }
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = originalColor;
+        }
+        isInvulnerable = false;
     }
-
-
 }
