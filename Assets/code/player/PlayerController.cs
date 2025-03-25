@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
                 spriteRenderer.color = c;
             }
 
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(2f);
 
             col.enabled = true;
             if (spriteRenderer != null)

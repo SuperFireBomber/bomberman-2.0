@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3660821376025791345}
   m_Layer: 0
   m_Name: Enemy3
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,15 +111,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afc213f863bd0b2489c7dc8c93b4c3b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 2
   cellSize: 1
   startPosition: {x: 6, y: 2}
   wallLayer:
     serializedVersion: 2
     m_Bits: 64
   enemyManager: {fileID: 0}
-  moveSpeed: 2
-  health: 3
+  baseSpeed: 2
+  speedMultiplier: 1
+  maxHealth: 1
 --- !u!212 &3660821376025791345
 SpriteRenderer:
   m_ObjectHideFlags: 0
