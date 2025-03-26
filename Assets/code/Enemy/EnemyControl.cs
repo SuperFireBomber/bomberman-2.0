@@ -51,6 +51,9 @@ public class EnemyControl : MonoBehaviour
                 Collider2D hit = Physics2D.OverlapPoint(new Vector2(newPosition.x * cellSize, newPosition.y * cellSize), wallLayer);
                 if (hit != null)
                     continue;
+                // 新增：检查新坐标是否已经被其他敌人占用（包括未移动的敌人）
+                if (IsGridOccupied(newPosition))
+                    continue;
                 if (enemyManager != null && enemyManager.ReserveNextPosition(newPosition))
                 {
                     targetPosition = newPosition;
@@ -133,4 +136,22 @@ public class EnemyControl : MonoBehaviour
         }
         isInvulnerable = false;
     }
+    private bool IsGridOccupied(Vector2 pos)
+    {
+        EnemyControl[] enemies = FindObjectsOfType<EnemyControl>();
+        foreach (EnemyControl enemy in enemies)
+        {
+            if (enemy == this)
+                continue;
+            // 将其他敌人的位置换算到网格坐标
+            Vector2 enemyGridPos = new Vector2(
+                Mathf.Round(enemy.transform.position.x / cellSize),
+                Mathf.Round(enemy.transform.position.y / cellSize)
+            );
+            if (enemyGridPos == pos)
+                return true;
+        }
+        return false;
+    }
+
 }

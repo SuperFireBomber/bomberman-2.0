@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy1Prefab: {fileID: 5403359060483767061, guid: 59b5de611fc3aff49a236f05722373a7, type: 3}
-  enemy1Count: 1
+  enemy1Count: 2
   enemy2Prefab: {fileID: 5403359060483767061, guid: e4cf885b98eaea14d9b3fa72d4cccd64, type: 3}
   enemy2Count: 1
   enemy3Prefab: {fileID: 5403359060483767061, guid: fc5a86308233be443b90807467781381, type: 3}
