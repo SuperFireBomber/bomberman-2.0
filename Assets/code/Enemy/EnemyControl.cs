@@ -40,6 +40,10 @@ public class EnemyControl : MonoBehaviour
 
     void Update()
     {
+        // 如果 Game Over 面板已显示，则不继续执行移动逻辑
+        if (GameOverManager.instance != null && GameOverManager.instance.gameOverPanel.activeSelf)
+            return;
+
         if (!isMoving)
         {
             Vector2[] directions = new Vector2[] { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
