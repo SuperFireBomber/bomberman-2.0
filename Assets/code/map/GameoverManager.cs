@@ -21,7 +21,7 @@ public class GameOverManager : MonoBehaviour
     public void Retry()
     {
         // 重新加载当前场景
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("level1");
     }
 
     public void ReturnToMenu()
