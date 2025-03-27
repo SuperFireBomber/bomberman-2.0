@@ -153,5 +153,16 @@ public class EnemyControl : MonoBehaviour
         }
         return false;
     }
+    private void OnDestroy()
+    {
+        EnemyManager.currentEnemyCount--;
+        if (EnemyManager.currentEnemyCount <= 0)
+        {
+            if (VictoryManager.instance != null)
+            {
+                VictoryManager.instance.ShowVictory();  // 此处调用 VictoryManager 的方法显示胜利界面
+            }
+        }
+    }
 
 }
