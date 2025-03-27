@@ -40,6 +40,10 @@ public class EnemyControl : MonoBehaviour
 
     void Update()
     {
+        // 如果 Game Over 面板已显示，则不继续执行移动逻辑
+        if (GameOverManager.instance != null && GameOverManager.instance.gameOverPanel.activeSelf)
+            return;
+
         if (!isMoving)
         {
             Vector2[] directions = new Vector2[] { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
@@ -50,6 +54,9 @@ public class EnemyControl : MonoBehaviour
                 Vector2 newPosition = targetPosition + direction;
                 Collider2D hit = Physics2D.OverlapPoint(new Vector2(newPosition.x * cellSize, newPosition.y * cellSize), wallLayer);
                 if (hit != null)
+                    continue;
+                // 新增：检查新坐标是否已经被其他敌人占用（包括未移动的敌人）
+                if (IsGridOccupied(newPosition))
                     continue;
                 if (enemyManager != null && enemyManager.ReserveNextPosition(newPosition))
                 {
@@ -133,4 +140,33 @@ public class EnemyControl : MonoBehaviour
         }
         isInvulnerable = false;
     }
+    private bool IsGridOccupied(Vector2 pos)
+    {
+        EnemyControl[] enemies = FindObjectsOfType<EnemyControl>();
+        foreach (EnemyControl enemy in enemies)
+        {
+            if (enemy == this)
+                continue;
+            // 将其他敌人的位置换算到网格坐标
+            Vector2 enemyGridPos = new Vector2(
+                Mathf.Round(enemy.transform.position.x / cellSize),
+                Mathf.Round(enemy.transform.position.y / cellSize)
+            );
+            if (enemyGridPos == pos)
+                return true;
+        }
+        return false;
+    }
+    private void OnDestroy()
+    {
+        EnemyManager.currentEnemyCount--;
+        if (EnemyManager.currentEnemyCount <= 0)
+        {
+            if (VictoryManager.instance != null)
+            {
+                VictoryManager.instance.ShowVictory();  // 此处调用 VictoryManager 的方法显示胜利界面
+            }
+        }
+    }
+
 }

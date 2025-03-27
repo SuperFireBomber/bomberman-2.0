@@ -30,6 +30,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // 如果 Victory 面板已显示，则不响应玩家输入
+        if (VictoryManager.instance != null && (VictoryManager.instance.clearPanel.activeSelf || !VictoryManager.instance.allowMove))
+            return;
+
         // 只有当玩家未在移动时，才能接收新的移动输入（支持长按）
         if (!isMoving)
         {

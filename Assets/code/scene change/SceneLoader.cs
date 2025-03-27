@@ -1,12 +1,18 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-//记得删除。跳转进入关卡选择
 public class SceneLoader : MonoBehaviour
 {
-    public void LoadGameScene()
+    public static void LoadNextScene()
     {
-        SceneManager.LoadScene("GameScene"); 
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+    public static void ReloadGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public static void LoadMenu()
+    {
+        SceneManager.LoadScene("start");
     }
 }

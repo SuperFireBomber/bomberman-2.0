@@ -300,7 +300,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 570936929}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51728331892981e45beca8cd202c7223, type: 3}
+  m_Script: {fileID: 11500000, guid: aed2be4380ac9ee4ebd29edca8f3ba61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1092854120
@@ -489,8 +489,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 570936933}
-        m_TargetAssemblyTypeName: Level1, Assembly-CSharp
-        m_MethodName: LoadLevel1
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: LoadNextScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

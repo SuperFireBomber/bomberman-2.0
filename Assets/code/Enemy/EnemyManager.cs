@@ -22,7 +22,7 @@ public class EnemyManager : MonoBehaviour
     public int maxY = 6;
     // 玩家初始位置，生成敌人时排除此位置
     public Vector2 playerStartPos = new Vector2(8, 4);
-
+    public static int currentEnemyCount = 0;
     // 内部记录可用初始位置（简单处理，不检测墙体）
     private List<Vector2> availablePositions = new List<Vector2>();
     // 用于预定移动目标，防止多个敌人选择同一位置
@@ -76,6 +76,7 @@ public class EnemyManager : MonoBehaviour
             GameObject enemyObj = Instantiate(prefab, worldPos, Quaternion.identity);
 
             EnemyControl ec = enemyObj.GetComponent<EnemyControl>();
+            EnemyManager.currentEnemyCount++;  // 增加计数
             if (ec != null)
             {
                 ec.startPosition = spawnPos;
