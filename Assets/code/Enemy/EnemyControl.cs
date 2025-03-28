@@ -94,6 +94,11 @@ public class EnemyControl : MonoBehaviour
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
+            AudioManager.instance.PlaySFX("enemy-die");
+        }
+        else
+        {
+            AudioManager.instance.PlaySFX("enemy-hurt");
         }
     }
     void OnCollisionEnter2D(Collision2D collision)

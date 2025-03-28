@@ -61,7 +61,7 @@ public class Bomb : MonoBehaviour
 
         // Create explosion in the center.
         CreateExplosion(bombGridPosition);
-
+        AudioManager.instance.PlaySFX("explosion");
         // Define four cardinal directions.
         Vector2[] directions = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
 

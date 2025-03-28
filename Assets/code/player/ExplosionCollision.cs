@@ -20,6 +20,7 @@ public class ExplosionCollision : MonoBehaviour
             if (PlayerHealthController.instance != null)
             {
                 PlayerHealthController.instance.DealDamage();
+                AudioManager.instance.PlaySFX("hurt");
             }
             StartCoroutine(RemoveDamageFlag(other.gameObject));
         }

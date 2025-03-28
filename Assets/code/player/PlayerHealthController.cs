@@ -29,14 +29,15 @@ public class PlayerHealthController : MonoBehaviour
     public void DealDamage()
     {
  
-            currentHealth --;
-            
-            // 当生命值为0时，玩家消失
-            if(currentHealth <= 0)
-            {
-                gameObject.SetActive(false);
-                GameOverManager.instance.ShowGameOver();
-            }
+        currentHealth --;
+        AudioManager.instance.PlaySFX("hurt");
+        // 当生命值为0时，玩家消失
+        if(currentHealth <= 0)
+        {
+            AudioManager.instance.PlaySFX("steel-pipe");
+            gameObject.SetActive(false);
+            GameOverManager.instance.ShowGameOver();
+        }
  
     }
 

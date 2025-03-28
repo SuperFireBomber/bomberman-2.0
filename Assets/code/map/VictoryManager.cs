@@ -15,6 +15,7 @@ public class VictoryManager : MonoBehaviour
     public void ShowVictory()
     {
         clearPanel.SetActive(true);
+        AudioManager.instance.PlaySFX("victory");
     }
 
     public void NextLevel()

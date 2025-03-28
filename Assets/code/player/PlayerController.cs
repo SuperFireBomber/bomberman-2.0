@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && Bomb.currentBombCount < maxBombs)
         {
             PlaceBomb();
+            AudioManager.instance.PlaySFX("ignite-bomb");
         }
     }
 
