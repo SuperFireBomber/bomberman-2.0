@@ -8,6 +8,22 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
     public Sound[] musicSounds, sfxSounds;
     public AudioSource musicSource, sfxSource;
+    public void ToggleMusic()
+    {
+        musicSource.mute = !musicSource.mute;
+    }
+    public void ToggleSFX()
+    {
+        sfxSource.mute = !sfxSource.mute;
+    }
+    public void MusicVolum(float volume)
+    {
+        musicSource.volume = volume;
+    }
+    public void SFXVolume(float volume)
+    {
+        sfxSource.volume = volume;
+    }
     private void Awake()
     {
         if (instance == null)
@@ -24,6 +40,8 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
+        // Use this if you want to stop the music
+        AudioManager.instance.musicSource.Stop();
         PlayMusic("MainTheme");
     }
 
