@@ -82,6 +82,13 @@ public class EnemyManager : MonoBehaviour
             Vector3 worldPos = new Vector3(spawnPos.x * cellSize, spawnPos.y * cellSize, -1);
             GameObject enemyObj = Instantiate(prefab, worldPos, Quaternion.identity);
 
+            // 强制将生成位置四舍五入到整数坐标
+            enemyObj.transform.position = new Vector3(
+                Mathf.Round(enemyObj.transform.position.x),
+                Mathf.Round(enemyObj.transform.position.y),
+                -1
+            );
+
             EnemyControl ec = enemyObj.GetComponent<EnemyControl>();
             EnemyManager.currentEnemyCount++;  // 增加计数
             if (ec != null)
