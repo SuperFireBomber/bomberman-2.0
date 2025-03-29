@@ -9,6 +9,7 @@ TagManager:
   - Explosion
   - Enemy
   - Bomb
+  - Reward
   layers:
   - Default
   - TransparentFX
