@@ -43,26 +43,19 @@ public class EnemyControl : MonoBehaviour
             originalColor = spriteRenderer.color;
         }
         // 生成健康条（如果预制体和容器都有设置）
-        // 生成血条（如果模板和容器都有设置）
-        // 生成血条（如果 healthBarSprite 和 healthBarContainer 都设置了）
         if (healthBarSprite != null && healthBarContainer != null)
         {
             for (int i = 0; i < maxHealth; i++)
             {
-                // 动态创建一个新的 GameObject
                 GameObject bar = new GameObject("HealthBar_" + i);
-                // 将其作为容器的子物体
                 bar.transform.SetParent(healthBarContainer);
-                // 重置本地坐标
-                bar.transform.localPosition = new Vector3(i * 0.3f, 0, 0);
-                // 添加 SpriteRenderer 组件，并设置 sprite
+                // 添加 SpriteRenderer 并设置 sprite
                 SpriteRenderer sr = bar.AddComponent<SpriteRenderer>();
                 sr.sprite = healthBarSprite;
-                // 可以设置排序层级，确保血条显示在合适位置
                 sr.sortingOrder = 10;
-                // 将生成的对象加入列表
                 healthBars.Add(bar);
             }
+            UpdateHealthBarPositions();
         }
     }
 
@@ -115,16 +108,34 @@ public class EnemyControl : MonoBehaviour
             TakeDamage();
         }
     }
+    private void UpdateHealthBarPositions()
+    {
+        // 间隔可调（例如 0.3f）
+        float spacing = 0.3f;
+        int count = healthBars.Count;
+        // 计算总宽度（以每个 bar 的中心间距计算）
+        float totalWidth = (count - 1) * spacing;
+        // 第一个 bar 的起始 x 坐标，使整个排列居中
+        float startX = -totalWidth / 2f;
+        for (int i = 0; i < count; i++)
+        {
+            // 更新每个血条的 localPosition
+            healthBars[i].transform.localPosition = new Vector3(startX + i * spacing, 0, 0);
+        }
+    }
+
     void TakeDamage()
     {
         currentHealth--;
 
-        // 更新血条：如果还有血条，则移除最后一格
+        // 如果还有血条，则移除最后一格
         if (healthBars.Count > 0)
         {
             GameObject bar = healthBars[healthBars.Count - 1];
             healthBars.RemoveAt(healthBars.Count - 1);
             Destroy(bar);
+            // 更新剩余血条的位置，使其居中排列
+            UpdateHealthBarPositions();
         }
 
         if (currentHealth <= 0)
@@ -137,6 +148,7 @@ public class EnemyControl : MonoBehaviour
             AudioManager.instance.PlaySFX("enemy-hurt");
         }
     }
+
 
 
 
