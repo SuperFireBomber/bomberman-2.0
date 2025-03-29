@@ -150,11 +150,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy1Prefab: {fileID: 5403359060483767061, guid: 59b5de611fc3aff49a236f05722373a7, type: 3}
   enemy1Count: 2
-  enemy2Prefab: {fileID: 5403359060483767061, guid: e4cf885b98eaea14d9b3fa72d4cccd64, type: 3}
+  enemy2Prefab: {fileID: 5403359060483767061, guid: 7a479725089700345a9220cb116083d6, type: 3}
   enemy2Count: 1
-  enemy3Prefab: {fileID: 5403359060483767061, guid: fc5a86308233be443b90807467781381, type: 3}
+  enemy3Prefab: {fileID: 5403359060483767061, guid: 24e443a4bed09cd4fb599f2112b72385, type: 3}
   enemy3Count: 1
-  enemy4Prefab: {fileID: 5403359060483767061, guid: 7bc875b1ca3e21f46bb4fe996e1ef248, type: 3}
+  enemy4Prefab: {fileID: 5403359060483767061, guid: 1815fface6064604b9ff316d3dee4279, type: 3}
   enemy4Count: 0
   cellSize: 1
   minX: -9
