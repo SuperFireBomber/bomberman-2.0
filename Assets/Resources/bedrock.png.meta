@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: af746db9b29151841a4365e1ad30caea
+guid: 4d8eaa63d584bf546ad012ec72a0aad7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8240349336219069902
-    second: stellar_block_0
+      213: 8715820745954868566
+    second: bedrock_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: stellar_block_0
+      name: bedrock_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ecda672ef0a9b5270800000000000000
-      internalID: 8240349336219069902
+      spriteID: 65dbe904ac0d4f870800000000000000
+      internalID: 8715820745954868566
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      stellar_block_0: 8240349336219069902
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
