@@ -36,15 +36,9 @@ public class PlayerController : MonoBehaviour
         if (VictoryManager.instance != null && (VictoryManager.instance.clearPanel.activeSelf || !VictoryManager.instance.allowMove))
             return;
 
-        // 如果玩家未在移动时，更新 targetPosition 与当前格子对齐，防止因物理系统干扰造成位置 desync
+        // 只有当玩家未在移动时，才能接收新的移动输入（支持长按）
         if (!isMoving)
         {
-            targetPosition = new Vector2(
-                Mathf.Round(transform.position.x / cellSize),
-                Mathf.Round(transform.position.y / cellSize)
-            );
-
-            // 只有当玩家未在移动时，才能接收新的移动输入（支持长按）
             if (Input.GetKey(KeyCode.W)) StartCoroutine(Move(Vector2.up));
             if (Input.GetKey(KeyCode.S)) StartCoroutine(Move(Vector2.down));
             if (Input.GetKey(KeyCode.A)) StartCoroutine(Move(Vector2.left));
@@ -72,10 +66,6 @@ public class PlayerController : MonoBehaviour
 
         // 开始移动
         isMoving = true;
-        // 暂时禁用碰撞体，避免插值过程中因物理系统干扰导致位置偏移
-        Collider2D col = GetComponent<Collider2D>();
-        if (col != null) col.enabled = false;
-
         Vector3 startPos = transform.position;
         Vector3 endPos = new Vector3(newPosition.x * cellSize, newPosition.y * cellSize, -1);
 
@@ -89,13 +79,10 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
 
-        // 确保移动结束后的位置准确，直接赋值网格位置（避免插值带来的浮点数误差）
+        // 确保移动结束后的位置准确
         transform.position = endPos;
         targetPosition = newPosition;
         isMoving = false;
-
-        // 移动结束后重新启用碰撞体
-        if (col != null) col.enabled = true;
     }
 
     private void PlaceBomb()
