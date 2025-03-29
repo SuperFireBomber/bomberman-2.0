@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class EnemyManager : MonoBehaviour
     // 玩家初始位置，生成敌人时排除此位置
     public Vector2 playerStartPos = new Vector2(8, 4);
     public static int currentEnemyCount = 0;
-    // 内部记录可用初始位置（简单处理，不检测墙体）
+    // 内部记录可用初始位置
     private List<Vector2> availablePositions = new List<Vector2>();
     // 用于预定移动目标，防止多个敌人选择同一位置
     private HashSet<Vector2> reservedPositions = new HashSet<Vector2>();
@@ -33,10 +34,15 @@ public class EnemyManager : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(DelayedCollect());
+    }
+    private IEnumerator DelayedCollect()
+    {
+        yield return new WaitForSeconds(0.1f);
         CollectAvailablePositions();
         SpawnAllEnemies();
     }
-    
+
     void CollectAvailablePositions()
     {
         for (int x = minX; x <= maxX; x++)
@@ -54,6 +60,7 @@ public class EnemyManager : MonoBehaviour
             }
         }
     }
+
 
     void SpawnAllEnemies()
     {
@@ -81,13 +88,6 @@ public class EnemyManager : MonoBehaviour
 
             Vector3 worldPos = new Vector3(spawnPos.x * cellSize, spawnPos.y * cellSize, -1);
             GameObject enemyObj = Instantiate(prefab, worldPos, Quaternion.identity);
-
-            // 强制将生成位置四舍五入到整数坐标
-            enemyObj.transform.position = new Vector3(
-                Mathf.Round(enemyObj.transform.position.x),
-                Mathf.Round(enemyObj.transform.position.y),
-                -1
-            );
 
             EnemyControl ec = enemyObj.GetComponent<EnemyControl>();
             EnemyManager.currentEnemyCount++;  // 增加计数
