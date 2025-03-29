@@ -373,10 +373,13 @@ MonoBehaviour:
   obstaclePrefab: {fileID: 8720216507158862813, guid: a992d37b709d6ca4badfa766520b0e42, type: 3}
   rewardPrefabs:
   - {fileID: 1289887241066329756, guid: 227586757b856644fa85755ceaa6e19a, type: 3}
+  - {fileID: 6921811175253759146, guid: e677619a8b8c15e4cbf4a48e3df5dc77, type: 3}
+  - {fileID: 5505234281957351341, guid: 580680034c296254f85ab26d329e8ade, type: 3}
+  - {fileID: 489650474996241335, guid: 3431f36e1744e474698231e35f4bf2b0, type: 3}
   wallChance: 0.1
   obstacleChance: 0.2
   seed: 42
-  rewardInterval: 20
+  rewardInterval: 8
 --- !u!4 &1666922648
 Transform:
   m_ObjectHideFlags: 0
