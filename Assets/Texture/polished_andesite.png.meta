@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      polished_andesite_0: -8825083197732328754
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
