@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a8da97298ea9232449692f7d425ecb51
+guid: cf7b0eb25c09d754587846c9c69c6bfa
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7268795672897183799
-    second: adamanite_block_0
+      213: -6317532587423845476
+    second: cobblestone_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: adamanite_block_0
+      name: cobblestone_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9cf1114e8dc002b90800000000000000
-      internalID: -7268795672897183799
+      spriteID: c93b5ad559d9358a0800000000000000
+      internalID: -6317532587423845476
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      adamanite_block_0: -7268795672897183799
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -20,6 +20,7 @@ public class EnemyManager : MonoBehaviour
     public int maxX = 10;
     public int minY = -6;
     public int maxY = 6;
+    public LayerMask wallLayer;
     // 玩家初始位置，生成敌人时排除此位置
     public Vector2 playerStartPos = new Vector2(8, 4);
     public static int currentEnemyCount = 0;
@@ -35,7 +36,7 @@ public class EnemyManager : MonoBehaviour
         CollectAvailablePositions();
         SpawnAllEnemies();
     }
-
+    
     void CollectAvailablePositions()
     {
         for (int x = minX; x <= maxX; x++)
@@ -44,6 +45,10 @@ public class EnemyManager : MonoBehaviour
             {
                 Vector2 pos = new Vector2(x, y);
                 if (pos == playerStartPos)
+                    continue;
+                // 检查该格子对应的世界坐标是否有墙体（或障碍），若有则跳过
+                Vector2 worldPos = new Vector2(pos.x * cellSize, pos.y * cellSize);
+                if (Physics2D.OverlapPoint(worldPos, wallLayer) != null)
                     continue;
                 availablePositions.Add(pos);
             }
