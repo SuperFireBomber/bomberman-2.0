@@ -38,6 +38,23 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // 如果面板已经在显示，按 ESC 则恢复游戏
+            if (pausePanel.activeSelf)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                // 面板没显示，就显示它
+                OnSettingButtonClick();
+            }
+        }
+    }
+
     // 点击设置按钮时调用（确保在Inspector中将Setting按钮的OnClick事件绑定此方法）
     public void OnSettingButtonClick()
     {

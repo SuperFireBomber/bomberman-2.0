@@ -27,6 +27,8 @@ public class EnemyManager : MonoBehaviour
     private List<Vector2> availablePositions = new List<Vector2>();
     // 用于预定移动目标，防止多个敌人选择同一位置
     private HashSet<Vector2> reservedPositions = new HashSet<Vector2>();
+    // New: Flag to indicate if the scene is reloading
+    public static bool isSceneReloading = false;    
 
     void Start()
     {

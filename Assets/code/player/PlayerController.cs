@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
         {
             originalColor = spriteRenderer.color;
         }
+        // Trigger DisableCollider(无敌) at the beginning
+        DisableCollider();
     }
 
     void Update()

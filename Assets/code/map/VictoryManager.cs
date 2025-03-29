@@ -14,8 +14,12 @@ public class VictoryManager : MonoBehaviour
 
     public void ShowVictory()
     {
-        clearPanel.SetActive(true);
-        AudioManager.instance.PlaySFX("victory");
+        // Check if clearPanel is still valid before setting active
+        if (clearPanel != null)
+        {
+            clearPanel.SetActive(true);
+            AudioManager.instance.PlaySFX("victory");
+        }
     }
 
     public void NextLevel()

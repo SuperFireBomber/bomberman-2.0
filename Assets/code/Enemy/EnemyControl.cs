@@ -165,9 +165,13 @@ public class EnemyControl : MonoBehaviour
     private void OnDestroy()
     {
         EnemyManager.currentEnemyCount--;
+        // 保证在所有敌人销毁且VictoryManager存在的情况下才显示胜利界面
         if (EnemyManager.currentEnemyCount <= 0)
         {
-            if (VictoryManager.instance != null)
+            // Check if VictoryManager instance and its clearPanel are not destroyed
+            if (!EnemyManager.isSceneReloading && 
+                VictoryManager.instance != null && 
+                VictoryManager.instance.clearPanel != null)
             {
                 VictoryManager.instance.ShowVictory();  // 此处调用 VictoryManager 的方法显示胜利界面
             }
