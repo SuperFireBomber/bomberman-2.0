@@ -199,6 +199,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 3
+  healthBarSprite: {fileID: -4162122909835288923, guid: 3fa83f869f7933741ab8857d3b0b0967, type: 3}
+  healthBarContainer: {fileID: 3932607746653036114}
 --- !u!1 &1646674791
 GameObject:
   m_ObjectHideFlags: 0
@@ -2677,7 +2679,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4154291001648825728, guid: 473aa7df602e94f4fa5fccc2304bea2e, type: 3}
       propertyPath: maxBombs
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4154291001648825728, guid: 473aa7df602e94f4fa5fccc2304bea2e, type: 3}
       propertyPath: bombPrefab
@@ -2747,6 +2749,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1465992104}
   m_SourcePrefab: {fileID: 100100000, guid: 473aa7df602e94f4fa5fccc2304bea2e, type: 3}
+--- !u!4 &3932607746653036114 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1887097992787807280, guid: 473aa7df602e94f4fa5fccc2304bea2e, type: 3}
+  m_PrefabInstance: {fileID: 3932607746653036113}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &3983718772008549210
 RectTransform:
   m_ObjectHideFlags: 0

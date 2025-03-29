@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
 public class EnemyControl : MonoBehaviour
 {
     [Header("移动相关")]
@@ -223,6 +222,16 @@ public class EnemyControl : MonoBehaviour
             if (VictoryManager.instance != null)
             {
                 {
+                    // 遍历场上所有 Bomb，并禁用它们的爆炸功能
+                    GameObject[] bombs = GameObject.FindGameObjectsWithTag("Bomb");
+                    foreach (GameObject bombObj in bombs)
+                    {
+                        Bomb bomb = bombObj.GetComponent<Bomb>();
+                        if (bomb != null)
+                        {
+                            bomb.disableExplode = true;
+                        }
+                    }
                     // 禁用所有爆炸的碰撞体，防止后续爆炸伤害其他对象
                     DisableAllExplosionColliders();
                     VictoryManager.instance.ShowVictory();  // 此处调用 VictoryManager 的方法显示胜利界面
