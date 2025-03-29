@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EnemyControl : MonoBehaviour
 {
@@ -24,6 +25,11 @@ public class EnemyControl : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
 
+    [Header("Health Bar UI")]
+    public GameObject healthBarPrefab;      // 单格生命条预制体
+    public Transform healthBarContainer;    // 存放生命条的容器（通常挂在 enemy 头顶的空物体）
+    private List<GameObject> healthBars = new List<GameObject>();  // 用于记录每一格健康条
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -36,6 +42,18 @@ public class EnemyControl : MonoBehaviour
         {
             originalColor = spriteRenderer.color;
         }
+        // 生成健康条（如果预制体和容器都有设置）
+        if (healthBarPrefab != null && healthBarContainer != null)
+        {
+            for (int i = 0; i < maxHealth; i++)
+            {
+                GameObject bar = Instantiate(healthBarPrefab, healthBarContainer);
+                // 可根据需要调整 localPosition 使生命条横向排列，例如每个条之间间隔 0.3 个单位
+                bar.transform.localPosition = new Vector3(i * 0.3f, 0, 0);
+                healthBars.Add(bar);
+            }
+        }
+
     }
 
     void Update()
@@ -87,10 +105,18 @@ public class EnemyControl : MonoBehaviour
             TakeDamage();
         }
     }
-
     void TakeDamage()
     {
         currentHealth--;
+
+        // 更新健康条：如果还有健康条，则移除最后一格
+        if (healthBars.Count > 0)
+        {
+            GameObject bar = healthBars[healthBars.Count - 1];
+            healthBars.RemoveAt(healthBars.Count - 1);
+            Destroy(bar);
+        }
+
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
@@ -101,6 +127,7 @@ public class EnemyControl : MonoBehaviour
             AudioManager.instance.PlaySFX("enemy-hurt");
         }
     }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
