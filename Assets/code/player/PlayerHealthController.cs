@@ -1,35 +1,32 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
- 
+
 public class PlayerHealthController : MonoBehaviour
 {
     public static PlayerHealthController instance;   // 声明静态变量
- 
+
     public int currentHealth, maxHealth;             // 声明当前生命和最大生命
- 
- 
+
     private void Awake()
     {
         instance = this;
     }
- 
+
     void Start()
     {
         currentHealth = maxHealth;
- 
     }
- 
+
     void Update()
     {
     }
- 
+
     public void DealDamage()
     {
- 
-        currentHealth --;
+        currentHealth--;
         AudioManager.instance.PlaySFX("hurt");
+
         // 当生命值为0时，玩家消失
         if (currentHealth <= 0)
         {
@@ -39,8 +36,22 @@ public class PlayerHealthController : MonoBehaviour
             gameObject.SetActive(false);
             GameOverManager.instance.ShowGameOver();
         }
-
     }
+
+    public void IncreaseHealth()
+    {
+        if (currentHealth < maxHealth)
+        {
+            currentHealth++;
+            AudioManager.instance.PlaySFX("heal");
+            Debug.Log("Health increased by 1. Current Health: " + currentHealth);
+        }
+        else
+        {
+            Debug.Log("Health is already at maximum.");
+        }
+    }
+
     private void DisableAllExplosionColliders()
     {
         // 找到所有标签为 "Explosion" 的游戏对象
@@ -54,5 +65,4 @@ public class PlayerHealthController : MonoBehaviour
             }
         }
     }
-
 }
