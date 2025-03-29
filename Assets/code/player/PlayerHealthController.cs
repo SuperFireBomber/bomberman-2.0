@@ -23,7 +23,6 @@ public class PlayerHealthController : MonoBehaviour
  
     void Update()
     {
- 
     }
  
     public void DealDamage()
@@ -32,13 +31,28 @@ public class PlayerHealthController : MonoBehaviour
         currentHealth --;
         AudioManager.instance.PlaySFX("hurt");
         // 当生命值为0时，玩家消失
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
+            // 禁用所有爆炸的碰撞体，防止后续爆炸伤害其他对象
+            DisableAllExplosionColliders();
             AudioManager.instance.PlaySFX("steel-pipe");
             gameObject.SetActive(false);
             GameOverManager.instance.ShowGameOver();
         }
- 
+
+    }
+    private void DisableAllExplosionColliders()
+    {
+        // 找到所有标签为 "Explosion" 的游戏对象
+        GameObject[] explosions = GameObject.FindGameObjectsWithTag("Explosion");
+        foreach (GameObject exp in explosions)
+        {
+            Collider2D col = exp.GetComponent<Collider2D>();
+            if (col != null)
+            {
+                col.enabled = false;
+            }
+        }
     }
 
 }

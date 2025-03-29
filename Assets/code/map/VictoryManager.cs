@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class VictoryManager : MonoBehaviour
 {
@@ -14,11 +15,17 @@ public class VictoryManager : MonoBehaviour
 
     public void ShowVictory()
     {
-        // Check if clearPanel is still valid before setting active
-        if (clearPanel != null)
+        StartCoroutine(ShowVictoryPanelAfterDelay());
+    }
+
+    private IEnumerator ShowVictoryPanelAfterDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        // 检查玩家是否还存在且处于活动状态
+        if (PlayerHealthController.instance != null && PlayerHealthController.instance.gameObject.activeSelf)
         {
-            clearPanel.SetActive(true);
             AudioManager.instance.PlaySFX("victory");
+            clearPanel.SetActive(true);
         }
     }
 

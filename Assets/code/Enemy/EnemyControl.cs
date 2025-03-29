@@ -168,12 +168,22 @@ public class EnemyControl : MonoBehaviour
         // 保证在所有敌人销毁且VictoryManager存在的情况下才显示胜利界面
         if (EnemyManager.currentEnemyCount <= 0)
         {
-            // Check if VictoryManager instance and its clearPanel are not destroyed
-            if (!EnemyManager.isSceneReloading && 
-                VictoryManager.instance != null && 
-                VictoryManager.instance.clearPanel != null)
-            {
+                Debug.Log("All cleared");
+                // 禁用所有爆炸的碰撞体，防止后续爆炸伤害其他对象
+                DisableAllExplosionColliders();
                 VictoryManager.instance.ShowVictory();  // 此处调用 VictoryManager 的方法显示胜利界面
+        }
+    }
+    private void DisableAllExplosionColliders()
+    {
+        // 找到所有标签为 "Explosion" 的游戏对象
+        GameObject[] explosions = GameObject.FindGameObjectsWithTag("Explosion");
+        foreach (GameObject exp in explosions)
+        {
+            Collider2D col = exp.GetComponent<Collider2D>();
+            if (col != null)
+            {
+                col.enabled = false;
             }
         }
     }
