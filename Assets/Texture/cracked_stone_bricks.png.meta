@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      cracked_stone_bricks_0: -866042475899433943
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

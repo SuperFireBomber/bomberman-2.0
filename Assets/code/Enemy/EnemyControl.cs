@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine.UI;
 public class EnemyControl : MonoBehaviour
 {
     [Header("移动相关")]
@@ -26,9 +26,9 @@ public class EnemyControl : MonoBehaviour
     private Color originalColor;
 
     [Header("Health Bar UI")]
-    public GameObject healthBarPrefab;      // 单格生命条预制体
-    public Transform healthBarContainer;    // 存放生命条的容器（通常挂在 enemy 头顶的空物体）
-    private List<GameObject> healthBars = new List<GameObject>();  // 用于记录每一格健康条
+    public Sprite healthBarSprite;          // 用于生成血条的 Sprite
+    public Transform healthBarContainer;    // 血条容器（挂在 enemy 头顶的空物体）
+    private List<GameObject> healthBars = new List<GameObject>();  // 保存生成的血条对象
 
     void Start()
     {
@@ -43,17 +43,27 @@ public class EnemyControl : MonoBehaviour
             originalColor = spriteRenderer.color;
         }
         // 生成健康条（如果预制体和容器都有设置）
-        if (healthBarPrefab != null && healthBarContainer != null)
+        // 生成血条（如果模板和容器都有设置）
+        // 生成血条（如果 healthBarSprite 和 healthBarContainer 都设置了）
+        if (healthBarSprite != null && healthBarContainer != null)
         {
             for (int i = 0; i < maxHealth; i++)
             {
-                GameObject bar = Instantiate(healthBarPrefab, healthBarContainer);
-                // 可根据需要调整 localPosition 使生命条横向排列，例如每个条之间间隔 0.3 个单位
+                // 动态创建一个新的 GameObject
+                GameObject bar = new GameObject("HealthBar_" + i);
+                // 将其作为容器的子物体
+                bar.transform.SetParent(healthBarContainer);
+                // 重置本地坐标
                 bar.transform.localPosition = new Vector3(i * 0.3f, 0, 0);
+                // 添加 SpriteRenderer 组件，并设置 sprite
+                SpriteRenderer sr = bar.AddComponent<SpriteRenderer>();
+                sr.sprite = healthBarSprite;
+                // 可以设置排序层级，确保血条显示在合适位置
+                sr.sortingOrder = 10;
+                // 将生成的对象加入列表
                 healthBars.Add(bar);
             }
         }
-
     }
 
     void Update()
@@ -109,7 +119,7 @@ public class EnemyControl : MonoBehaviour
     {
         currentHealth--;
 
-        // 更新健康条：如果还有健康条，则移除最后一格
+        // 更新血条：如果还有血条，则移除最后一格
         if (healthBars.Count > 0)
         {
             GameObject bar = healthBars[healthBars.Count - 1];
@@ -127,6 +137,9 @@ public class EnemyControl : MonoBehaviour
             AudioManager.instance.PlaySFX("enemy-hurt");
         }
     }
+
+
+
 
     void OnCollisionEnter2D(Collision2D collision)
     {
