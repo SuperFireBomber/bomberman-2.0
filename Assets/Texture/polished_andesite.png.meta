@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8a35e38cf4bd5054a9666d4ae3091fbb
+guid: d4e7e01d12daf0e409e3842744455667
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8010546667860171797
-    second: silver_block_0
+      213: -8825083197732328754
+    second: polished_andesite_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: silver_block_0
+      name: polished_andesite_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 51c9e72b0cd2b2f60800000000000000
-      internalID: 8010546667860171797
+      spriteID: eca65e5c691078580800000000000000
+      internalID: -8825083197732328754
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      silver_block_0: 8010546667860171797
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
