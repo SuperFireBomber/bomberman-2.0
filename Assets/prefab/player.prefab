@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4154291001648825728}
   - component: {fileID: 5240855265103168381}
   - component: {fileID: -4389406119919734539}
-  - component: {fileID: 4102395281581300501}
+  - component: {fileID: 6695154320308811151}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -136,7 +136,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &4102395281581300501
+--- !u!70 &6695154320308811151
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
