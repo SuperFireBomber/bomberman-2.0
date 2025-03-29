@@ -20,6 +20,9 @@ public class Bomb : MonoBehaviour
 
     private Collider2D bombCollider;
 
+    public bool disableExplode = false;
+
+
     void Start()
     {
         // Increment bomb counter.
@@ -53,6 +56,9 @@ public class Bomb : MonoBehaviour
 
     void Explode()
     {
+
+        if (disableExplode)
+            return;
         // Determine the bomb's grid position (rounding to nearest integer).
         Vector2 bombGridPosition = new Vector2(
             Mathf.Round(transform.position.x), 

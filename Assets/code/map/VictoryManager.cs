@@ -15,6 +15,7 @@ public class VictoryManager : MonoBehaviour
 
     public void ShowVictory()
     {
+        allowMove = false;
         StartCoroutine(ShowVictoryPanelAfterDelay());
     }
 
