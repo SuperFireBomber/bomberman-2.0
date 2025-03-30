@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class MaxBombsReward : MonoBehaviour
+public class BombLarger : MonoBehaviour
 {
     public float autoDestroyTime = 8f;
-    public float duration = 7f;
+    public float effectDuration = 7f;
 
     private void Start()
     {
@@ -14,12 +14,12 @@ public class MaxBombsReward : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Player collected the MaxBombs power-up.");
+            Debug.Log("Player collected the BombLarger power-up.");
 
             if (PlayerController.instance != null)
             {
-                PlayerController.instance.ActivateMaxBombsBoost(duration);
-                RewardUIManager.instance.ShowMaxBombsUI(duration);
+                BombEffectManager.instance.ActivateBombLarger(effectDuration);
+                RewardUIManager.instance.ShowBombRangeUI(effectDuration);
             }
 
             Destroy(gameObject);
