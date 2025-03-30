@@ -12,7 +12,6 @@ public class Bomb : MonoBehaviour
     private Collider2D bombCollider;
     public bool disableExplode = false;
 
-    public bool disableExplode = false;
 
 
     void Start()
