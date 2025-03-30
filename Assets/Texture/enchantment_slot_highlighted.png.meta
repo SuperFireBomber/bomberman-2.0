@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      enchantment_slot_highlighted_0: 6859911506848036939
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
