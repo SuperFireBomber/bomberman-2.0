@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,11 +13,11 @@ public class PlayerController : MonoBehaviour
     public int maxBombs = 1;    // 最大炸弹数量
 
     private Vector2 targetPosition;
-    private bool isMoving = false;
     private SpriteRenderer spriteRenderer;   // 使用 SpriteRenderer 替代 MeshRenderer
     private Color originalColor;
     public float moveSpeed = 5f;  // 控制移动速度，单位：单位/秒
-
+    private Rigidbody2D rb;
+    private Vector3 move;
     private void Awake()
     {
         instance = this;
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        rb = gameObject.GetComponent<Rigidbody2D>();
         targetPosition = startPosition;
         transform.position = new Vector3(targetPosition.x, targetPosition.y, -1);
 
@@ -43,7 +45,7 @@ public class PlayerController : MonoBehaviour
         if (VictoryManager.instance != null && (VictoryManager.instance.clearPanel.activeSelf || !VictoryManager.instance.allowMove))
             return;
 
-        Vector3 move = Vector3.zero;
+        move = Vector3.zero;
         if (Input.GetKey(KeyCode.W))
             move += Vector3.up;
         if (Input.GetKey(KeyCode.S))
@@ -53,16 +55,19 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
             move += Vector3.right;
 
-        // 按时间和速度累加移动
-        transform.position += move.normalized * moveSpeed * Time.deltaTime;
-        Debug.Log(transform.position);
-
         // 放置炸弹逻辑，判断是否达到最大炸弹数量
         if (Input.GetKeyDown(KeyCode.Space) && Bomb.currentBombCount < maxBombs)
         {
             PlaceBomb();
             AudioManager.instance.PlaySFX("ignite-bomb");
         }
+    }
+    void FixedUpdate()
+    {
+
+        Vector3 pos = rb.transform.position;
+        pos += move.normalized * moveSpeed * Time.deltaTime;
+        rb.MovePosition(pos);
     }
 
     private void PlaceBomb()
