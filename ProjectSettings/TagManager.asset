@@ -8,6 +8,7 @@ TagManager:
   - obstacle
   - Explosion
   - Enemy
+  - Bomb
   - Reward
   layers:
   - Default
