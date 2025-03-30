@@ -2,32 +2,25 @@ using UnityEngine;
 
 public class SpeedBoostReward : MonoBehaviour
 {
-    public float autoDestroyTime = 8f;  // Auto destroy after this time
-    public float duration = 7f;         // Duration of the power-up effect
+    public float autoDestroyTime = 8f;
+    public float duration = 7f;
 
     private void Start()
     {
-        // Schedule the reward to be destroyed after a set time
         Destroy(gameObject, autoDestroyTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Check if the colliding object has the tag "Player"
         if (collision.CompareTag("Player"))
         {
 
-            // Activate the speed boost effect via the PlayerController
             if (PlayerController.instance != null)
             {
                 PlayerController.instance.ActivateSpeedBoost(duration);
-            }
-            else
-            {
-                Debug.LogError("PlayerController instance is null.");
+                RewardUIManager.instance.ShowSpeedBoostUI(duration);
             }
 
-            // Destroy the reward object immediately upon collision
             Destroy(gameObject);
         }
     }
