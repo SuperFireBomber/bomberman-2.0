@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class SpeedBoostReward : MonoBehaviour
+public class BombLarger : MonoBehaviour
 {
     public float autoDestroyTime = 8f;
-    public float duration = 7f;
+    public float effectDuration = 7f;
 
     private void Start()
     {
@@ -14,18 +14,15 @@ public class SpeedBoostReward : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            Debug.Log("Player collected the BombLarger power-up.");
 
             if (PlayerController.instance != null)
             {
-                PlayerController.instance.ActivateSpeedBoost(duration);
-                RewardUIManager.instance.ShowSpeedBoostUI(duration);
+                BombEffectManager.instance.ActivateBombLarger(effectDuration);
+                RewardUIManager.instance.ShowBombRangeUI(effectDuration);
             }
 
             Destroy(gameObject);
         }
-    }
-
-    private void OnDestroy()
-    {
     }
 }
