@@ -14,21 +14,15 @@ public class MaxBombsReward : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            Debug.Log("Player collected the MaxBombs power-up.");
 
             if (PlayerController.instance != null)
             {
                 PlayerController.instance.ActivateMaxBombsBoost(duration);
-            }
-            else
-            {
                 RewardUIManager.instance.ShowMaxBombsUI(duration);
             }
 
             Destroy(gameObject);
         }
-    }
-
-    private void OnDestroy()
-    {
     }
 }

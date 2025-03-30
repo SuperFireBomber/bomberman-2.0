@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5762811106520030590}
   - component: {fileID: 4319889875176607644}
   - component: {fileID: 2719758178909489859}
+  - component: {fileID: 1573579341556989429}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -127,3 +128,21 @@ MonoBehaviour:
   settingButton: {fileID: 0}
   restartButton: {fileID: 0}
   menuButton: {fileID: 0}
+--- !u!114 &1573579341556989429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5859846441365425884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64de85d48d3022e49943f30b66e10dda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedBoostImage: {fileID: 0}
+  speedBoostText: {fileID: 0}
+  maxBombsImage: {fileID: 0}
+  maxBombsText: {fileID: 0}
+  bombRangeImage: {fileID: 0}
+  bombRangeText: {fileID: 0}
