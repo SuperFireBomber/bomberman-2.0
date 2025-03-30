@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2918848331841037365}
   - component: {fileID: 1046400460688091360}
   - component: {fileID: -185806116118460746}
-  - component: {fileID: 7134329072320656986}
+  - component: {fileID: -6701899784530394871}
   m_Layer: 0
   m_Name: reward4
   m_TagString: Reward
@@ -135,7 +135,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7134329072320656986
+--- !u!114 &-6701899784530394871
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,6 +144,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 489650474996241335}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12de60870b29a1d4880dfe0d1e42f59c, type: 3}
+  m_Script: {fileID: 11500000, guid: e507305f3807ee54cb80569d5b259aab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autoDestroyTime: 8
