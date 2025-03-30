@@ -1,19 +1,26 @@
 using UnityEngine;
-using System.Collections;  // 引入协程所需的命名空间
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;   // 静态实例，方便访问
+
     public Vector2 startPosition = new Vector2(8, 4); // 初始位置
     public LayerMask wallLayer;
 
     public GameObject bombPrefab;
-    public int maxBombs = 1;
+    public int maxBombs = 1;    // 最大炸弹数量
 
     private Vector2 targetPosition;
     private bool isMoving = false;
     private SpriteRenderer spriteRenderer;   // 使用 SpriteRenderer 替代 MeshRenderer
     private Color originalColor;
     public float moveSpeed = 5f;  // 控制移动速度，单位：单位/秒
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -29,6 +36,7 @@ public class PlayerController : MonoBehaviour
         // Trigger DisableCollider(无敌) at the beginning
         DisableCollider();
     }
+
     void Update()
     {
         // 如果 Victory 面板已显示，则不响应玩家输入
@@ -48,7 +56,8 @@ public class PlayerController : MonoBehaviour
         // 按时间和速度累加移动
         transform.position += move.normalized * moveSpeed * Time.deltaTime;
         Debug.Log(transform.position);
-        // 放置炸弹逻辑保持不变
+
+        // 放置炸弹逻辑，判断是否达到最大炸弹数量
         if (Input.GetKeyDown(KeyCode.Space) && Bomb.currentBombCount < maxBombs)
         {
             PlaceBomb();
@@ -70,6 +79,42 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // 激活速度提升效果
+    public void ActivateSpeedBoost(float duration)
+    {
+        StartCoroutine(SpeedBoost(duration));
+    }
+
+    private IEnumerator SpeedBoost(float duration)
+    {
+        moveSpeed = 10f;
+        Debug.Log("Move speed increased to 10. Power-up activated!");
+        Debug.Log("Power-up effect started. Duration: " + duration + " seconds.");
+
+        yield return new WaitForSeconds(duration);
+
+        moveSpeed = 5f;
+        Debug.Log("Move speed reverted to 5. Power-up effect ended.");
+    }
+
+
+    // 激活最大炸弹数量增加效果
+    public void ActivateMaxBombsBoost(float duration)
+    {
+        StartCoroutine(MaxBombsBoost(duration));
+    }
+
+    private IEnumerator MaxBombsBoost(float duration)
+    {
+        maxBombs = 2;
+        Debug.Log("MaxBombs increased to 2. Power-up activated!");
+        Debug.Log("Power-up effect started. Duration: " + duration + " seconds.");
+
+        yield return new WaitForSeconds(duration);
+
+        maxBombs = 1;
+        Debug.Log("MaxBombs reverted to 1. Power-up effect ended.");
+    }
     // 修改后的 DisableCollider 方法，使用 SpriteRenderer 来实现透明效果
     public void DisableCollider()
     {
@@ -78,21 +123,18 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator DisableColliderCoroutine()
     {
-        // 记录原始层
         int originalLayer = gameObject.layer;
-        // 设置为无敌层（确保在 Tags & Layers 中存在 “Invincible” 层）
         gameObject.layer = LayerMask.NameToLayer("Invincible");
 
         if (spriteRenderer != null)
         {
             Color c = spriteRenderer.color;
-            c.a = 0.5f; // 半透明
+            c.a = 0.5f;
             spriteRenderer.color = c;
         }
 
         yield return new WaitForSeconds(2f);
 
-        // 恢复原始层和颜色
         gameObject.layer = originalLayer;
         if (spriteRenderer != null)
         {
