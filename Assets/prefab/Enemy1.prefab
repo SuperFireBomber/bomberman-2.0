@@ -152,7 +152,7 @@ MonoBehaviour:
   baseSpeed: 2
   speedMultiplier: 1
   maxHealth: 1
-  healthBarSprite: {fileID: -4162122909835288923, guid: 3fa83f869f7933741ab8857d3b0b0967, type: 3}
+  healthBarSprite: {fileID: -2804153990167354982, guid: 1e8a915e144af6142a8eed405a53f23d, type: 3}
   healthBarContainer: {fileID: 1317242726241920877}
 --- !u!212 &3660821376025791345
 SpriteRenderer:
