@@ -201,6 +201,65 @@ MonoBehaviour:
   maxHealth: 3
   healthBarSprite: {fileID: -4162122909835288923, guid: 3fa83f869f7933741ab8857d3b0b0967, type: 3}
   healthBarContainer: {fileID: 3932607746653036114}
+--- !u!1 &1567184835
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1567184837}
+  - component: {fileID: 1567184836}
+  m_Layer: 0
+  m_Name: map generator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1567184836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567184835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bec15fcd5f323b4687293f40f53cd56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridWidth: 10
+  gridHeight: 10
+  cellSize: 1
+  floorPrefab: {fileID: 841767877422853962, guid: 583f458fff0e8ff47a57d8ba266329b1, type: 3}
+  wallPrefab: {fileID: 8720216507158862813, guid: 02dbfe40e493d7241b2c0f1d5c80fa0a, type: 3}
+  obstaclePrefab: {fileID: 8720216507158862813, guid: a992d37b709d6ca4badfa766520b0e42, type: 3}
+  rewardPrefabs:
+  - {fileID: 1289887241066329756, guid: 227586757b856644fa85755ceaa6e19a, type: 3}
+  - {fileID: 6921811175253759146, guid: e677619a8b8c15e4cbf4a48e3df5dc77, type: 3}
+  - {fileID: 5505234281957351341, guid: 580680034c296254f85ab26d329e8ade, type: 3}
+  - {fileID: 489650474996241335, guid: 3431f36e1744e474698231e35f4bf2b0, type: 3}
+  wallChance: 0.1
+  obstacleChance: 0.2
+  seed: 88
+  rewardInterval: 8
+--- !u!4 &1567184837
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567184835}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1646674791
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,59 +397,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!1 &1666922646
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1666922648}
-  - component: {fileID: 1666922647}
-  m_Layer: 0
-  m_Name: map generator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1666922647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1666922646}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bec15fcd5f323b4687293f40f53cd56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gridWidth: 10
-  gridHeight: 10
-  cellSize: 1
-  floorPrefab: {fileID: 841767877422853962, guid: 583f458fff0e8ff47a57d8ba266329b1, type: 3}
-  wallPrefab: {fileID: 8720216507158862813, guid: 02dbfe40e493d7241b2c0f1d5c80fa0a, type: 3}
-  obstaclePrefab: {fileID: 8720216507158862813, guid: a992d37b709d6ca4badfa766520b0e42, type: 3}
-  wallChance: 0.1
-  obstacleChance: 0.2
-  seed: 42
---- !u!4 &1666922648
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1666922646}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &49070137626110187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5016,8 +5022,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1646674794}
-  - {fileID: 1666922648}
   - {fileID: 3932607746653036113}
   - {fileID: 711025647}
   - {fileID: 3983718772008549210}
   - {fileID: 7112601031534978104}
+  - {fileID: 1567184837}

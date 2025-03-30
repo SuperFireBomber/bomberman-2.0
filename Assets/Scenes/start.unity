@@ -410,6 +410,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Audio Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 6130133520061806748, guid: 038b9d7e654c3d84d9d44a49afb25733, type: 3}
+      propertyPath: sfxSounds.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6130133520061806748, guid: 038b9d7e654c3d84d9d44a49afb25733, type: 3}
+      propertyPath: sfxSounds.Array.data[8].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: b228ff5a3e6f64d49b74f24c904c747b, type: 3}
+    - target: {fileID: 6130133520061806748, guid: 038b9d7e654c3d84d9d44a49afb25733, type: 3}
+      propertyPath: sfxSounds.Array.data[8].name
+      value: heal
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

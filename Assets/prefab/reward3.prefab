@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8210644107696761247}
   - component: {fileID: 1179631076006359591}
   - component: {fileID: 391627209852143112}
-  - component: {fileID: -8935315454843184495}
+  - component: {fileID: 211509298143413161}
   m_Layer: 0
   m_Name: reward3
   m_TagString: Reward
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 12085813604639031, guid: 243da9bbd9afd7442baa4098dca7e255, type: 3}
+  m_Sprite: {fileID: -2486552265518466616, guid: 3047212ac18668f47b8573fae31a9ab8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -127,7 +127,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.9, y: 0.9}
+    oldSize: {x: 0.14, y: 0.18}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -135,7 +135,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-8935315454843184495
+--- !u!114 &211509298143413161
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,7 +144,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 5505234281957351341}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e507305f3807ee54cb80569d5b259aab, type: 3}
+  m_Script: {fileID: 11500000, guid: 142db3caeb3e2ca419c45800e4bd0200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   autoDestroyTime: 8
+  duration: 7
