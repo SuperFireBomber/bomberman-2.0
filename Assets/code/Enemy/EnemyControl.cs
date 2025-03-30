@@ -198,7 +198,7 @@ public class EnemyControl : MonoBehaviour
     }
     private bool IsGridOccupied(Vector2 pos)
     {
-        EnemyControl[] enemies = FindObjectsOfType<EnemyControl>();
+        EnemyControl[] enemies = FindObjectsByType<EnemyControl>(FindObjectsSortMode.None);
         foreach (EnemyControl enemy in enemies)
         {
             if (enemy == this)
