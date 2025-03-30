@@ -15,14 +15,11 @@ public class GameOverManager : MonoBehaviour
 
     public void ShowGameOver()
     {
-        StartCoroutine(ShowGameoverPanelAfterDelay());
-        
-    }
-    private IEnumerator ShowGameoverPanelAfterDelay()
-    {
-        yield return new WaitForSeconds(0.5f);
+        Time.timeScale = 0;
         gameOverPanel.SetActive(true);
+
     }
+
     public void Retry()
     {
         SceneLoader.ReloadGame();

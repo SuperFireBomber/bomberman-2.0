@@ -60,10 +60,6 @@ public class EnemyControl : MonoBehaviour
 
     void Update()
     {
-        // 如果 Game Over 面板已显示，则不继续执行移动逻辑
-        if (GameOverManager.instance != null && GameOverManager.instance.gameOverPanel.activeSelf)
-            return;
-
         if (!isMoving)
         {
             Vector2[] directions = new Vector2[] { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
@@ -148,10 +144,6 @@ public class EnemyControl : MonoBehaviour
         }
     }
 
-
-
-
-
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -222,35 +214,9 @@ public class EnemyControl : MonoBehaviour
             if (VictoryManager.instance != null)
             {
                 {
-                    // 遍历场上所有 Bomb，并禁用它们的爆炸功能
-                    GameObject[] bombs = GameObject.FindGameObjectsWithTag("Bomb");
-                    foreach (GameObject bombObj in bombs)
-                    {
-                        Bomb bomb = bombObj.GetComponent<Bomb>();
-                        if (bomb != null)
-                        {
-                            bomb.disableExplode = true;
-                        }
-                    }
-                    // 禁用所有爆炸的碰撞体，防止后续爆炸伤害其他对象
-                    DisableAllExplosionColliders();
                     VictoryManager.instance.ShowVictory();  // 此处调用 VictoryManager 的方法显示胜利界面
                 }
             }
         }
     }
-    private void DisableAllExplosionColliders()
-    {
-        // 找到所有标签为 "Explosion" 的游戏对象
-        GameObject[] explosions = GameObject.FindGameObjectsWithTag("Explosion");
-        foreach (GameObject exp in explosions)
-        {
-            Collider2D col = exp.GetComponent<Collider2D>();
-            if (col != null)
-            {
-                col.enabled = false;
-            }
-        }
-    }
-
 }

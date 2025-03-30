@@ -47,18 +47,6 @@ public class PlayerHealthController : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            DisableAllExplosionColliders();
-
-            GameObject[] bombs = GameObject.FindGameObjectsWithTag("Bomb");
-            foreach (GameObject bombObj in bombs)
-            {
-                Bomb bomb = bombObj.GetComponent<Bomb>();
-                if (bomb != null)
-                {
-                    bomb.disableExplode = true;
-                }
-            }
-
             AudioManager.instance.PlaySFX("steel-pipe");
             gameObject.SetActive(false);
             GameOverManager.instance.ShowGameOver();
@@ -126,17 +114,6 @@ public class PlayerHealthController : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             healthBars[i].transform.localPosition = new Vector3(startX + i * spacing, 0, 0);
-        }
-    }
-
-    private void DisableAllExplosionColliders()
-    {
-        GameObject[] explosions = GameObject.FindGameObjectsWithTag("Explosion");
-        foreach (GameObject exp in explosions)
-        {
-            Collider2D col = exp.GetComponent<Collider2D>();
-            if (col != null)
-                col.enabled = false;
         }
     }
 }
