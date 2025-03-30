@@ -2681,7 +2681,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4154291001648825728, guid: 473aa7df602e94f4fa5fccc2304bea2e, type: 3}
       propertyPath: cellSize
-      value: 0.25
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4154291001648825728, guid: 473aa7df602e94f4fa5fccc2304bea2e, type: 3}
       propertyPath: maxBombs

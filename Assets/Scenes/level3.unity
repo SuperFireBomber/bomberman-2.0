@@ -373,9 +373,11 @@ MonoBehaviour:
   floorPrefab: {fileID: 841767877422853962, guid: 583f458fff0e8ff47a57d8ba266329b1, type: 3}
   wallPrefab: {fileID: 8720216507158862813, guid: 02dbfe40e493d7241b2c0f1d5c80fa0a, type: 3}
   obstaclePrefab: {fileID: 8720216507158862813, guid: a992d37b709d6ca4badfa766520b0e42, type: 3}
+  rewardPrefabs: []
   wallChance: 0.1
   obstacleChance: 0.2
   seed: 42
+  rewardInterval: 20
 --- !u!4 &1666922648
 Transform:
   m_ObjectHideFlags: 0
@@ -2675,7 +2677,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4154291001648825728, guid: 473aa7df602e94f4fa5fccc2304bea2e, type: 3}
       propertyPath: cellSize
-      value: 0.25
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4154291001648825728, guid: 473aa7df602e94f4fa5fccc2304bea2e, type: 3}
       propertyPath: maxBombs

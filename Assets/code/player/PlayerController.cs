@@ -3,7 +3,6 @@ using System.Collections;  // 引入协程所需的命名空间
 
 public class PlayerController : MonoBehaviour
 {
-    public float cellSize = 0.25f;  // 移动距离
     public Vector2 startPosition = new Vector2(8, 4); // 初始位置
     public LayerMask wallLayer;
 
@@ -14,11 +13,12 @@ public class PlayerController : MonoBehaviour
     private bool isMoving = false;
     private SpriteRenderer spriteRenderer;   // 使用 SpriteRenderer 替代 MeshRenderer
     private Color originalColor;
+    public float moveSpeed = 5f;  // 控制移动速度，单位：单位/秒
 
     void Start()
     {
         targetPosition = startPosition;
-        transform.position = new Vector3(targetPosition.x * cellSize, targetPosition.y * cellSize, -1);
+        transform.position = new Vector3(targetPosition.x, targetPosition.y, -1);
 
         // 获取 SpriteRenderer 组件并保存原始颜色
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -29,23 +29,26 @@ public class PlayerController : MonoBehaviour
         // Trigger DisableCollider(无敌) at the beginning
         DisableCollider();
     }
-
     void Update()
     {
         // 如果 Victory 面板已显示，则不响应玩家输入
         if (VictoryManager.instance != null && (VictoryManager.instance.clearPanel.activeSelf || !VictoryManager.instance.allowMove))
             return;
 
-        // 只有当玩家未在移动时，才能接收新的移动输入（支持长按）
-        if (!isMoving)
-        {
-            if (Input.GetKey(KeyCode.W)) StartCoroutine(Move(Vector2.up));
-            if (Input.GetKey(KeyCode.S)) StartCoroutine(Move(Vector2.down));
-            if (Input.GetKey(KeyCode.A)) StartCoroutine(Move(Vector2.left));
-            if (Input.GetKey(KeyCode.D)) StartCoroutine(Move(Vector2.right));
-        }
+        Vector3 move = Vector3.zero;
+        if (Input.GetKey(KeyCode.W))
+            move += Vector3.up;
+        if (Input.GetKey(KeyCode.S))
+            move += Vector3.down;
+        if (Input.GetKey(KeyCode.A))
+            move += Vector3.left;
+        if (Input.GetKey(KeyCode.D))
+            move += Vector3.right;
 
-        // 放置炸弹
+        // 按时间和速度累加移动
+        transform.position += move.normalized * moveSpeed * Time.deltaTime;
+        Debug.Log(transform.position);
+        // 放置炸弹逻辑保持不变
         if (Input.GetKeyDown(KeyCode.Space) && Bomb.currentBombCount < maxBombs)
         {
             PlaceBomb();
@@ -53,49 +56,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private IEnumerator Move(Vector2 direction)
-    {
-        Vector2 newPosition = targetPosition + direction;
-
-        // 检查目标位置是否有墙
-        Vector2 worldPos = new Vector2(newPosition.x * cellSize, newPosition.y * cellSize);
-        if (Physics2D.OverlapPoint(worldPos, wallLayer) != null)
-        {
-            yield break; // 退出协程，不移动
-        }
-
-        // 开始移动
-        isMoving = true;
-        Vector3 startPos = transform.position;
-        Vector3 endPos = new Vector3(newPosition.x * cellSize, newPosition.y * cellSize, -1);
-
-        float elapsedTime = 0f;
-        float moveTime = 0.1f; // 控制移动速度
-
-        while (elapsedTime < moveTime)
-        {
-            transform.position = Vector3.Lerp(startPos, endPos, elapsedTime / moveTime);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        // 确保移动结束后的位置准确
-        transform.position = endPos;
-        targetPosition = newPosition;
-        isMoving = false;
-    }
-
     private void PlaceBomb()
     {
         Vector2 bombGridPos = new Vector2(
-            Mathf.Round(transform.position.x / cellSize),
-            Mathf.Round(transform.position.y / cellSize)
+            Mathf.Round(transform.position.x),
+            Mathf.Round(transform.position.y)
         );
 
-        Collider2D hit = Physics2D.OverlapPoint(new Vector2(bombGridPos.x * cellSize, bombGridPos.y * cellSize), wallLayer);
+        Collider2D hit = Physics2D.OverlapPoint(new Vector2(bombGridPos.x, bombGridPos.y), wallLayer);
         if (hit == null)
         {
-            Instantiate(bombPrefab, new Vector3(bombGridPos.x * cellSize, bombGridPos.y * cellSize, -1), Quaternion.identity);
+            Instantiate(bombPrefab, new Vector3(bombGridPos.x, bombGridPos.y, -1), Quaternion.identity);
         }
     }
 
@@ -107,24 +78,25 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator DisableColliderCoroutine()
     {
-        Collider2D col = GetComponent<Collider2D>();
-        if (col != null)
+        // 记录原始层
+        int originalLayer = gameObject.layer;
+        // 设置为无敌层（确保在 Tags & Layers 中存在 “Invincible” 层）
+        gameObject.layer = LayerMask.NameToLayer("Invincible");
+
+        if (spriteRenderer != null)
         {
-            col.enabled = false;
-            if (spriteRenderer != null)
-            {
-                Color c = spriteRenderer.color;
-                c.a = 0.5f;  // 设置半透明
-                spriteRenderer.color = c;
-            }
+            Color c = spriteRenderer.color;
+            c.a = 0.5f; // 半透明
+            spriteRenderer.color = c;
+        }
 
-            yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2f);
 
-            col.enabled = true;
-            if (spriteRenderer != null)
-            {
-                spriteRenderer.color = originalColor;
-            }
+        // 恢复原始层和颜色
+        gameObject.layer = originalLayer;
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = originalColor;
         }
     }
 }
