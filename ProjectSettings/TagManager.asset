@@ -14,12 +14,12 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Invincible
   - Water
   - UI
   - wall
-  - 
-  - 
+  - Enemy
+  - Explosion
   - 
   - 
   - 

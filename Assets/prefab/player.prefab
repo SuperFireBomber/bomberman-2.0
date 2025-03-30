@@ -79,13 +79,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63769b45f39374540a918381df2daed7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellSize: 1
   startPosition: {x: 8, y: 4}
   wallLayer:
     serializedVersion: 2
     m_Bits: 64
   bombPrefab: {fileID: 1801460509281316333, guid: 0f6012987a463494093d0f5208307ef5, type: 3}
   maxBombs: 1
+  moveSpeed: 5
 --- !u!50 &5240855265103168381
 Rigidbody2D:
   serializedVersion: 5
