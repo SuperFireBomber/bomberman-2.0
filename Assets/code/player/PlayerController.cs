@@ -41,9 +41,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // 如果 Victory 面板已显示，则不响应玩家输入
-        if (VictoryManager.instance != null && (VictoryManager.instance.clearPanel.activeSelf || !VictoryManager.instance.allowMove))
-            return;
 
         move = Vector3.zero;
         if (Input.GetKey(KeyCode.W))

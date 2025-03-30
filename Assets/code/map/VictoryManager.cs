@@ -7,7 +7,6 @@ public class VictoryManager : MonoBehaviour
 
     public GameObject clearPanel;
     public GameObject confirmPanel;
-    public bool allowMove = true;
     private void Awake()
     {
         instance = this;
@@ -15,21 +14,14 @@ public class VictoryManager : MonoBehaviour
 
     public void ShowVictory()
     {
-        allowMove = false;
-        StartCoroutine(ShowVictoryPanelAfterDelay());
-    }
-
-    private IEnumerator ShowVictoryPanelAfterDelay()
-    {
-        yield return new WaitForSeconds(0.5f);
-        // 检查玩家是否还存在且处于活动状态
         if (PlayerHealthController.instance != null && PlayerHealthController.instance.gameObject.activeSelf)
         {
+            Time.timeScale = 0;
             AudioManager.instance.PlaySFX("victory");
             clearPanel.SetActive(true);
         }
+            
     }
-
     public void NextLevel()
     {
         SceneLoader.LoadNextScene();
@@ -41,7 +33,6 @@ public class VictoryManager : MonoBehaviour
 
     public void ReturnAttempt()
     {
-        allowMove = false;
         ConfirmReturn();
     }
 
