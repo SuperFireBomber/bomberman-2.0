@@ -15,7 +15,6 @@ public class HealthReward : MonoBehaviour
         // Check if the colliding object has the tag "Player"
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Player collected the Health Reward.");
 
             // Increase health if possible
             if (PlayerHealthController.instance != null)
@@ -34,6 +33,5 @@ public class HealthReward : MonoBehaviour
 
     private void OnDestroy()
     {
-        Debug.Log("Health Reward auto-destroyed after " + autoDestroyTime + " seconds.");
     }
 }

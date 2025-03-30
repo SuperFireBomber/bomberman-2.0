@@ -3,31 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 public class EnemyControl : MonoBehaviour
 {
-    [Header("移动相关")]
-    public float cellSize = 1f;               // 格子大小
-    public Vector2 startPosition = new Vector2(5, 5); // 初始位置（由 EnemyManager 设置）
-    public LayerMask wallLayer;               // 检测墙壁的图层
-    public EnemyManager enemyManager;         // 引用 EnemyManager
+    [Header("Movement")]
+    public float cellSize = 1f;               
+    public Vector2 startPosition = new Vector2(5, 5); 
+    public LayerMask wallLayer;               // Detect Wall Layer
+    public EnemyManager enemyManager;         // Reference EnemyManager
 
-    public float baseSpeed = 2f;              // 基础速度（在 Inspector 中可以统一设置）
-    public float speedMultiplier = 1f;        // 速度乘数（由 EnemyManager 传入，不同类型不同）
-    private float moveSpeed;                  // 实际速度 = baseSpeed * speedMultiplier
+    public float baseSpeed = 2f;             
+    public float speedMultiplier = 1f;        
+    private float moveSpeed;                  // moveSpeed = baseSpeed * speedMultiplier
 
     private Vector2 targetPosition;
     private bool isMoving = false;
 
-    [Header("生命与无敌")]
-    public int maxHealth = 1;                 // 敌人最大血量（不同类型不同）
+    [Header("Life and Invincibility")]
+    public int maxHealth = 1;                 // maxHealth(differ for different enemy type
     private int currentHealth;
-    private bool isInvulnerable = false;      // 短暂无敌状态
+    private bool isInvulnerable = false;      // Temporary invincibility
 
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
 
     [Header("Health Bar UI")]
-    public Sprite healthBarSprite;          // 用于生成血条的 Sprite
-    public Transform healthBarContainer;    // 血条容器（挂在 enemy 头顶的空物体）
-    private List<GameObject> healthBars = new List<GameObject>();  // 保存生成的血条对象
+    public Sprite healthBarSprite;          
+    public Transform healthBarContainer;    //Empty Object of Enemy to contain Health Bar
+    private List<GameObject> healthBars = new List<GameObject>();  
 
     void Start()
     {
