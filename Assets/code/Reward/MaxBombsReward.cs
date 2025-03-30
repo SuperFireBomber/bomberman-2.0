@@ -16,7 +16,6 @@ public class MaxBombsReward : MonoBehaviour
         // Check if the colliding object has the tag "Player"
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Player collected the MaxBombs power-up.");
 
             // Activate the max bombs increase effect via the PlayerController
             if (PlayerController.instance != null)
@@ -25,7 +24,6 @@ public class MaxBombsReward : MonoBehaviour
             }
             else
             {
-                Debug.LogError("PlayerController instance is null.");
             }
 
             // Destroy the reward object immediately upon collision
@@ -35,6 +33,5 @@ public class MaxBombsReward : MonoBehaviour
 
     private void OnDestroy()
     {
-        Debug.Log("MaxBombs Reward auto-destroyed after " + autoDestroyTime + " seconds.");
     }
 }

@@ -16,7 +16,6 @@ public class SpeedBoostReward : MonoBehaviour
         // Check if the colliding object has the tag "Player"
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Player collected the SpeedBoost power-up.");
 
             // Activate the speed boost effect via the PlayerController
             if (PlayerController.instance != null)
@@ -35,6 +34,5 @@ public class SpeedBoostReward : MonoBehaviour
 
     private void OnDestroy()
     {
-        Debug.Log("SpeedBoost Reward auto-destroyed after " + autoDestroyTime + " seconds.");
     }
 }

@@ -93,13 +93,9 @@ public class PlayerController : MonoBehaviour
     private IEnumerator SpeedBoost(float duration)
     {
         moveSpeed = 10f;
-        Debug.Log("Move speed increased to 10. Power-up activated!");
-        Debug.Log("Power-up effect started. Duration: " + duration + " seconds.");
-
         yield return new WaitForSeconds(duration);
 
         moveSpeed = 5f;
-        Debug.Log("Move speed reverted to 5. Power-up effect ended.");
     }
 
 
@@ -112,13 +108,10 @@ public class PlayerController : MonoBehaviour
     private IEnumerator MaxBombsBoost(float duration)
     {
         maxBombs = 2;
-        Debug.Log("MaxBombs increased to 2. Power-up activated!");
-        Debug.Log("Power-up effect started. Duration: " + duration + " seconds.");
 
         yield return new WaitForSeconds(duration);
 
         maxBombs = 1;
-        Debug.Log("MaxBombs reverted to 1. Power-up effect ended.");
     }
     // 修改后的 DisableCollider 方法，使用 SpriteRenderer 来实现透明效果
     public void DisableCollider()

@@ -16,8 +16,6 @@ public class Reward1 : MonoBehaviour
         // Check if the colliding object has the tag "Player"
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Player collected the BombLarger power-up (Tag: Reward).");
-
             // Activate the bomb larger effect via the manager
             BombEffectManager.instance.ActivateBombLarger(effectDuration);
 
@@ -28,6 +26,5 @@ public class Reward1 : MonoBehaviour
 
     private void OnDestroy()
     {
-        Debug.Log("Reward auto-destroyed after " + autoDestroyTime + " seconds.");
     }
 }

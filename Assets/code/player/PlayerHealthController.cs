@@ -71,7 +71,6 @@ public class PlayerHealthController : MonoBehaviour
         {
             currentHealth++;
             AudioManager.instance.PlaySFX("heal");
-            Debug.Log("Health increased by 1. Current Health: " + currentHealth);
 
             // 更新血条：增加一个血条
             AddHealthBar();
@@ -79,7 +78,6 @@ public class PlayerHealthController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Health is already at maximum.");
         }
     }
 

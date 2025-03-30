@@ -48,8 +48,6 @@ if (disableExplode)
             Mathf.Round(transform.position.y)
         );
 
-        // Log the explosion radius when the bomb explodes
-        Debug.Log("Bomb exploded with radius: " + BombRadiusManager.explosionRadius);
 
         CreateExplosion(bombGridPosition);
         AudioManager.instance.PlaySFX("explosion");
