@@ -209,7 +209,7 @@ public class EnemyControl : MonoBehaviour
     {
         EnemyManager.currentEnemyCount--;
         // 保证在所有敌人销毁且VictoryManager存在的情况下才显示胜利界面
-        if (EnemyManager.currentEnemyCount <= 0)
+        if (EnemyManager.currentEnemyCount <= 0 && !EnemyManager.isSceneReloading)
         {
             if (VictoryManager.instance != null)
             {
