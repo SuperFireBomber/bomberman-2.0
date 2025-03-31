@@ -34,6 +34,7 @@ public class EnemyManager : MonoBehaviour
 
     void Start()
     {
+        isSceneReloading = false;
         StartCoroutine(DelayedCollect());
     }
     private IEnumerator DelayedCollect()
