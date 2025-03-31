@@ -338,6 +338,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa5d90e24163816419a50b00e3f4fb54, type: 3}
+--- !u!114 &1375210814 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2719758178909489859, guid: fa5d90e24163816419a50b00e3f4fb54, type: 3}
+  m_PrefabInstance: {fileID: 1375210813}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5b14ecccceeae34c8d2b4fa40e5f9db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1512342035
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -578,6 +589,14 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9151091181528227707, guid: 67218d1da88da214189489aa35739a78, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1375210814}
+    - target: {fileID: 9151091181528227707, guid: 67218d1da88da214189489aa35739a78, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnSettingButtonClick
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -691,7 +710,7 @@ MonoBehaviour:
   - {fileID: 489650474996241335, guid: 3431f36e1744e474698231e35f4bf2b0, type: 3}
   wallChance: 0.1
   obstacleChance: 0.2
-  seed: 88
+  seed: 25
   rewardInterval: 8
 --- !u!4 &1567184837
 Transform:
