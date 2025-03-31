@@ -119,6 +119,28 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &549286711 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5264756501463610560, guid: 67218d1da88da214189489aa35739a78, type: 3}
+  m_PrefabInstance: {fileID: 1512342035}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a4db7a114972834c8e4117be1d82ba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &549286712 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5265573196289257555, guid: 67218d1da88da214189489aa35739a78, type: 3}
+  m_PrefabInstance: {fileID: 1512342035}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a4db7a114972834c8e4117be1d82ba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &711025645
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,19 +370,41 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5859846441365425884, guid: fa5d90e24163816419a50b00e3f4fb54, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1375210816}
   m_SourcePrefab: {fileID: 100100000, guid: fa5d90e24163816419a50b00e3f4fb54, type: 3}
 --- !u!114 &1375210814 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2719758178909489859, guid: fa5d90e24163816419a50b00e3f4fb54, type: 3}
   m_PrefabInstance: {fileID: 1375210813}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1375210815}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5b14ecccceeae34c8d2b4fa40e5f9db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1375210815 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5859846441365425884, guid: fa5d90e24163816419a50b00e3f4fb54, type: 3}
+  m_PrefabInstance: {fileID: 1375210813}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1375210816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375210815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9626ada7d2536cd4a881517413901c20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicScrollbar: {fileID: 549286712}
+  sfxScrollbar: {fileID: 549286711}
 --- !u!1001 &1512342035
 PrefabInstance:
   m_ObjectHideFlags: 0

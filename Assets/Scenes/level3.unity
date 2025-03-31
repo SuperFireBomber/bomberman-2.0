@@ -230,17 +230,61 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5859846441365425884, guid: fa5d90e24163816419a50b00e3f4fb54, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 65062848}
   m_SourcePrefab: {fileID: 100100000, guid: fa5d90e24163816419a50b00e3f4fb54, type: 3}
 --- !u!114 &65062846 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2719758178909489859, guid: fa5d90e24163816419a50b00e3f4fb54, type: 3}
   m_PrefabInstance: {fileID: 65062845}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 65062847}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5b14ecccceeae34c8d2b4fa40e5f9db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &65062847 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5859846441365425884, guid: fa5d90e24163816419a50b00e3f4fb54, type: 3}
+  m_PrefabInstance: {fileID: 65062845}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &65062848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65062847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9626ada7d2536cd4a881517413901c20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicScrollbar: {fileID: 119768083}
+  sfxScrollbar: {fileID: 119768082}
+--- !u!114 &119768082 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5264756501463610560, guid: 67218d1da88da214189489aa35739a78, type: 3}
+  m_PrefabInstance: {fileID: 1254640596}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a4db7a114972834c8e4117be1d82ba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &119768083 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5265573196289257555, guid: 67218d1da88da214189489aa35739a78, type: 3}
+  m_PrefabInstance: {fileID: 1254640596}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a4db7a114972834c8e4117be1d82ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &519492813 stripped
