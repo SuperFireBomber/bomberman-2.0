@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerController : MonoBehaviour
 {

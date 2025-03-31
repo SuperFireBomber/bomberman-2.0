@@ -381,6 +381,14 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3115555350162353485, guid: 67218d1da88da214189489aa35739a78, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 3115555350162353485, guid: 67218d1da88da214189489aa35739a78, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 600
+      objectReference: {fileID: 0}
     - target: {fileID: 3404757942779085494, guid: 67218d1da88da214189489aa35739a78, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
