@@ -46,4 +46,4 @@ Bomberman-2.0 is an enhanced version of the classic Bomberman game, featuring im
 - **Reward UI and second (Brian Yang)**  
 - **In-game UI panels (Team)**  
 - **Texture (Qihang Xiong)**  
-https://youtu.be/zlsopQiMCvc?si=6oEz02bR0hndJPF5
+<iframe width="560" height="315" src="https://www.youtube.com/embed/zlsopQiMCvc?si=75BQLPNmJTbRdTeF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
