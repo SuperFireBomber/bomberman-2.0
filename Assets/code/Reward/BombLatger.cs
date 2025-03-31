@@ -14,6 +14,7 @@ public class BombLarger : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            Debug.Log("Player collected the BombLarger power-up.");
 
             if (PlayerController.instance != null)
             {

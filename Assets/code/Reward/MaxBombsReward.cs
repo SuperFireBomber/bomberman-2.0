@@ -14,6 +14,7 @@ public class MaxBombsReward : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            Debug.Log("Player collected the MaxBombs power-up.");
 
             if (PlayerController.instance != null)
             {
