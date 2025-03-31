@@ -48,6 +48,5 @@ Bomberman-2.0 is an enhanced version of the classic Bomberman game, featuring im
 - **Texture (Qihang Xiong)**
 
 ### Video
-
-https://youtu.be/zlsopQiMCvc?si=Xy9QRJB7QzxrQxF9
-[![YouTube](http://i.ytimg.com/vi/zlsopQiMCvc/hqdefault.jpg)](https://www.youtube.com/watch?v=zlsopQiMCvc)
+https://youtu.be/G5RUBR0a0DI?si=WurpshPZc9jxmbeg
+[![YouTube](http://i.ytimg.com/vi/G5RUBR0a0DI/hqdefault.jpg)](https://www.youtube.com/watch?v=G5RUBR0a0DI)
