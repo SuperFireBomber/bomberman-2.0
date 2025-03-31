@@ -73,4 +73,9 @@ public class AudioManager : MonoBehaviour
             sfxSource.PlayOneShot(s.clip);
         }
     }
+
+    public void PlayButtonSFX()
+    {
+        AudioManager.instance.PlaySFX("button-click");
+    }
 }

@@ -65,10 +65,10 @@ MonoBehaviour:
     m_Value: 10
   intensity:
     m_OverrideState: 1
-    m_Value: 0.12
+    m_Value: 0.03
   response:
     m_OverrideState: 1
-    m_Value: 0.8
+    m_Value: 0.9
   texture:
     m_OverrideState: 1
     m_Value: {fileID: 2800000, guid: dd88c876add29c344b9098fbd54fd174, type: 3}
@@ -93,10 +93,10 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.36
+    m_Value: 0.3
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.5
+    m_Value: 0.35
   rounded:
     m_OverrideState: 0
     m_Value: 0
@@ -115,7 +115,7 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.25
+    m_Value: 0.18
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,7 +149,7 @@ MonoBehaviour:
   active: 1
   distance:
     m_OverrideState: 1
-    m_Value: 0.27
+    m_Value: 0.15
   cropToFit:
     m_OverrideState: 1
     m_Value: 0
