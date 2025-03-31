@@ -10,25 +10,30 @@ Movement: Use WASD to move the character in four directions.
 
 Bombs: Players can place bombs to destroy obstacles and defeat enemies. (have not complete)
 
-Basic Gameplay Features (To-Do)
+Basic Gameplay Features 
 
-- [ ]  reward
-- [ ]  Obstacles
-- [ ]  Scoreboard
-- [ ]  enemies
+- [x]  Move
+- [x]  Place bombs
+- [x]  Obstacles
+- [x]  enemies
 
 
-Visual Enhancements (To-Do)
+Visual Enhancements 
 
-- [ ]  Start scene. 
-- [ ]  Level selection scene (remember to add a total score that can be inherited).
-- [ ]  In-game UI.
-- [ ]  Map (walls, floors, obstacles)
-- [ ]  Players, bombs, enemies.
+- [x]  Start scene
+- [x]  Level selection scene 
+- [x]  Tutorial dashboard
+- [x]  In-game UI (win, die, setting, reward)
+- [x]  Different Maps in different level
+- [x]  Players, bombs, enemies texture.
 
-Additional Features (To-Do)
-- [ ]  Background music.
-- [ ]  Sound effects
-- [ ]  The action of the characters
+Additional Features 
+- [x]  Background music.
+- [x]  Sound effects
+- [x]  Different rewards and power-up
+- [x]  Different kind of enemy
+- [x]  Different levels
+- [x]  Retro filter
+- [x]  Show lives above player and enemies
 
 
