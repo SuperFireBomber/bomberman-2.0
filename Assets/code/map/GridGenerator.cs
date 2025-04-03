@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -30,16 +31,16 @@ public class GridGenerator : MonoBehaviour
 
     void GenerateGrid()
     {
-        for (int x = -10; x <= 10; x++) 
+        for (int x = -gridWidth; x <= gridWidth; x++) 
         {
-            for (int y = -6; y <= 6; y++) 
+            for (int y = -gridHeight; y <= gridHeight; y++) 
             {
                 Vector3 floorPosition = new Vector3(x * cellSize, y * cellSize, 0); 
                 Instantiate(floorPrefab, floorPosition, Quaternion.identity, transform);
 
                 if (x == 8 && y == 4) continue; 
 
-                if (x == -10 || x == 10 || y == -6 || y == 6) 
+                if (x == -gridWidth || x == gridWidth || y == -gridHeight || y == gridHeight) 
                 {
                     Vector3 wallPosition = new Vector3(x * cellSize, y * cellSize, -1);
                     Instantiate(wallPrefab, wallPosition, Quaternion.identity, transform);
